@@ -70,9 +70,17 @@ export default function ProfileView({ blogger }: { blogger: Blogger }) {
               </dl>
             </div>
             <div className="col-span-2 sm:col-span-1 sm:pt-5">
-              <p className="text-sm font-semibold">{blogger.niche}</p>
-              <p className="mt-1 max-w-2xl leading-relaxed">{blogger.bio}</p>
-              <p className="mt-2 font-medium text-[var(--tone)]">{blogger.topics.join(" · ")}</p>
+              <ul className="flex flex-wrap gap-2">
+                {blogger.topics.map((t) => (
+                  <li
+                    key={t}
+                    className="rounded-full bg-[var(--tone-soft)] px-3 py-1 text-sm font-medium text-[var(--tone)]"
+                  >
+                    {t}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-3 max-w-2xl leading-relaxed">{blogger.bio}</p>
               <div className="mt-5 grid max-w-lg grid-cols-1 gap-2 sm:grid-cols-2">
                 <TelegramButton />
                 <div className="grid">
