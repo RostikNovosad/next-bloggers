@@ -7,22 +7,29 @@ import Portrait from "./Portrait";
 import PostCarousel from "./PostCarousel";
 import PostModal from "./PostModal";
 import ChatDemo from "./ChatDemo";
+import { CloseIcon } from "./Icons";
 import TelegramButton from "./TelegramButton";
 
 export default function ProfileView({ blogger }: { blogger: Blogger }) {
   const [open, setOpen] = useState<number | null>(null);
   const [liked, setLiked] = useState<string[]>([]);
   const [chatOpen, setChatOpen] = useState(false);
-  const [teaser, setTeaser] = useState(false);
+  const [phase, setPhase] = useState<"idle" | "typing" | "message">("idle");
+  const [dismissed, setDismissed] = useState(false);
+  const [seen, setSeen] = useState(false);
   const firstName = blogger.name.split(" ")[0];
 
   const toggleLike = (id: string) =>
     setLiked((l) => (l.includes(id) ? l.filter((x) => x !== id) : [...l, id]));
 
-  // A short nudge from the blogger a few seconds after arrival, until the chat is opened.
+  // The blogger "writes" first: typing dots, then the greeting pops up next to the launcher.
   useEffect(() => {
-    const t = setTimeout(() => setTeaser(true), 3500);
-    return () => clearTimeout(t);
+    const t1 = setTimeout(() => setPhase("typing"), 1500);
+    const t2 = setTimeout(() => setPhase("message"), 3300);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
   }, []);
 
   // Phones get a bottom sheet: lock page scroll behind it. Escape closes on every size.
@@ -39,7 +46,8 @@ export default function ProfileView({ blogger }: { blogger: Blogger }) {
   }, [chatOpen]);
 
   const openChat = () => {
-    setTeaser(false);
+    setDismissed(true);
+    setSeen(true);
     setChatOpen(true);
   };
 
@@ -127,15 +135,36 @@ export default function ProfileView({ blogger }: { blogger: Blogger }) {
         />
       </div>
 
-      {teaser && !chatOpen && (
-        <button
-          type="button"
-          onClick={openChat}
-          className="msg-in fixed bottom-[6.5rem] max-sm:hidden right-4 z-40 max-w-[16rem] rounded-2xl rounded-br-md bg-surface px-4 py-3 text-left text-sm leading-snug shadow-xl shadow-ink/15 sm:right-6"
-        >
-          <span className="font-bold">{firstName}</span>
-          <span className="mt-0.5 block text-muted">Привіт! Напишіть мені, відповім одразу.</span>
-        </button>
+      {phase !== "idle" && !dismissed && !chatOpen && (
+        <div className="msg-in fixed bottom-[5.5rem] right-4 z-40 w-[min(17rem,calc(100vw-2rem))] sm:bottom-[6.5rem] sm:right-6">
+          <button
+            type="button"
+            onClick={openChat}
+            aria-label={`Відповісти: ${blogger.name}`}
+            className="block w-full rounded-2xl rounded-br-md bg-surface px-4 py-3 text-left text-sm leading-snug shadow-xl shadow-ink/15 transition-transform hover:-translate-y-0.5"
+          >
+            <span className="font-bold">{firstName}</span>
+            {phase === "typing" ? (
+              <span className="mt-1.5 flex h-5 items-center gap-1" aria-label="друкує">
+                {[0, 1, 2].map((i) => (
+                  <span key={i} className="typing-dot size-1.5 rounded-full bg-muted" style={{ animationDelay: `${i * 0.15}s` }} />
+                ))}
+              </span>
+            ) : (
+              <span className="msg-in mt-0.5 line-clamp-3 block text-muted">{blogger.dialog.greeting}</span>
+            )}
+          </button>
+          {phase === "message" && (
+            <button
+              type="button"
+              onClick={() => setDismissed(true)}
+              aria-label="Закрити повідомлення"
+              className="absolute -left-2 -top-2 grid size-6 place-items-center rounded-full bg-text text-white shadow-md"
+            >
+              <CloseIcon className="size-3" />
+            </button>
+          )}
+        </div>
       )}
 
       <button
@@ -154,6 +183,11 @@ export default function ProfileView({ blogger }: { blogger: Blogger }) {
         <span className="relative block size-full rounded-full bg-surface p-1 shadow-xl shadow-ink/25">
           <Avatar blogger={blogger} size={56} />
         </span>
+        {phase === "message" && !seen && (
+          <span className="msg-in absolute -right-0.5 -top-0.5 grid size-5 place-items-center rounded-full bg-[var(--tone)] text-xs font-bold text-white ring-2 ring-surface">
+            1
+          </span>
+        )}
         <span
           aria-hidden
           className="absolute bottom-0.5 right-0.5 size-4 rounded-full bg-[#22c55e] ring-2 ring-surface"
