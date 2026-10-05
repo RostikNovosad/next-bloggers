@@ -21,11 +21,11 @@ export default function Home() {
       <main className="relative flex-1 overflow-x-clip">
         <PageDecor />
         <section className="container-x relative grid gap-y-8 pt-8 pb-4 sm:pt-12 lg:grid-cols-[1.1fr_0.9fr] lg:content-center lg:gap-x-16 lg:gap-y-0">
-          <div className="lg:col-start-1 lg:row-start-1 lg:self-end">
-            <h1 className="hero-in text-balance text-[clamp(2rem,5.2vw,3.5rem)] font-bold leading-[1.1]">
+          <div data-aos="fade-up" className="lg:col-start-1 lg:row-start-1 lg:self-end">
+            <h1 className="text-balance text-[clamp(2rem,5.2vw,3.5rem)] font-bold leading-[1.1]">
               Блогери, які <span className="text-story">відповідають</span>
             </h1>
-            <p style={{ animationDelay: "80ms" }} className="hero-in mt-4 max-w-md text-base leading-relaxed text-muted sm:text-lg">
+            <p className="mt-4 max-w-md text-base leading-relaxed text-muted sm:text-lg">
               Дивіться історії, гортайте публікації й пишіть у чаті. Продовжити розмову можна в Telegram.
             </p>
           </div>
@@ -43,12 +43,12 @@ export default function Home() {
               <span className="float hidden lg:block absolute -left-[14rem] top-[10rem] size-6 rounded-full" style={{ background: "hsl(160 60% 78%)", animationDelay: "-4s" }} />
               <span className="float hidden lg:block absolute -right-[16rem] top-[12rem] size-14 rounded-full" style={{ background: "hsl(28 90% 82%)", animationDelay: "-1s" }} />
             </div>
-            <div className="hero-in" style={{ animationDelay: "200ms" }}>
+            <div data-aos="fade-up" data-aos-delay="200">
               <PhoneChat blogger={bloggers[0]} />
             </div>
           </div>
           <div className="lg:col-start-1 lg:row-start-2 lg:mt-7 lg:self-start">
-            <div style={{ animationDelay: "160ms" }} className="hero-in max-w-md rounded-2xl border border-line bg-surface p-4 sm:p-5">
+            <div data-aos="fade-up" data-aos-delay="160" className="max-w-md rounded-2xl border border-line bg-surface p-4 sm:p-5">
               <div className="mb-4 flex items-baseline justify-between">
                 <p className="text-sm font-bold">Історії</p>
                 <p className="text-xs text-muted">Натисніть, щоб відкрити</p>
@@ -56,7 +56,7 @@ export default function Home() {
               <Stories bloggers={bloggers} />
             </div>
 
-            <div style={{ animationDelay: "240ms" }} className="hero-in mt-6 flex flex-col gap-3 sm:flex-row">
+            <div data-aos="fade-up" data-aos-delay="240" className="mt-6 flex flex-col gap-3 sm:flex-row">
               <a href="#bloggers" className="btn btn-dark">
                 Обрати блогера
                 <ArrowIcon className="size-4 rotate-90" />
