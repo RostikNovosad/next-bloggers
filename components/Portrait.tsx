@@ -7,16 +7,17 @@ export default function Portrait({
   className = "",
   sizes = "(min-width: 768px) 33vw, 100vw",
   priority = false,
-  face,
+  crop,
 }: {
   blogger: Blogger;
   className?: string;
   sizes?: string;
   priority?: boolean;
-  /** Crop tightly around the face (for round avatars). */
-  face?: { x: number; y: number; zoom: number };
+  /** "avatar": tight crop for round avatars. "portrait": 4:5 frame with the face at a steady spot. */
+  crop?: "avatar" | "portrait";
 }) {
-  const { hue, photo, name } = blogger;
+  const { hue, photo, name, face } = blogger;
+  const framing = face && crop ? faceCrop(face, crop) : null;
   return (
     <div
       className={`relative overflow-hidden ${className}`}
@@ -25,15 +26,16 @@ export default function Portrait({
       }}
     >
       {photo ? (
-        face ? (
+        framing ? (
           <Image
             src={photo}
             alt={name}
             width={928}
             height={1152}
-            sizes={sizes}
+            priority={priority}
+            sizes={crop === "portrait" ? "(min-width: 640px) 928px, 100vw" : sizes}
             className="absolute max-w-none"
-            style={faceCrop(face)}
+            style={framing}
           />
         ) : (
           <Image src={photo} alt={name} fill sizes={sizes} priority={priority} className="object-cover" />
@@ -48,12 +50,26 @@ export default function Portrait({
   );
 }
 
-/** Places the 4:5 image so the face sits at the centre of a square box, scaled by `zoom`. */
-function faceCrop({ x, y, zoom }: { x: number; y: number; zoom: number }) {
+/**
+ * Positions the 4:5 photo inside its box.
+ * avatar: face centred in a square, scaled by `zoom`.
+ * portrait: face at 50% / 36% of a 4:5 frame, zoomed so faces end up a similar size.
+ */
+function faceCrop({ x, y, zoom }: { x: number; y: number; zoom: number }, mode: "avatar" | "portrait") {
+  if (mode === "avatar") {
+    return {
+      width: `${zoom * 100}%`,
+      height: `${zoom * 125}%`,
+      left: `${(0.5 - (x / 100) * zoom) * 100}%`,
+      top: `${(0.5 - (y / 100) * 1.25 * zoom) * 100}%`,
+    };
+  }
+  const z = Math.max(1, zoom * 0.6);
+  const clamp = (v: number) => Math.min(0, Math.max(1 - z, v));
   return {
-    width: `${zoom * 100}%`,
-    height: `${zoom * 125}%`,
-    left: `${(0.5 - (x / 100) * zoom) * 100}%`,
-    top: `${(0.5 - (y / 100) * 1.25 * zoom) * 100}%`,
+    width: `${z * 100}%`,
+    height: `${z * 100}%`,
+    left: `${clamp(0.5 - (x / 100) * z) * 100}%`,
+    top: `${clamp(0.36 - (y / 100) * z) * 100}%`,
   };
 }

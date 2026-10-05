@@ -57,6 +57,7 @@ export default function ProfileView({ blogger }: { blogger: Blogger }) {
         <section data-aos="fade-up" className="rounded-3xl border border-line bg-surface p-4 sm:p-6 lg:p-8">
           <div className="grid grid-cols-[7.5rem_1fr] gap-x-4 gap-y-5 sm:grid-cols-[13rem_1fr] sm:gap-x-8 sm:gap-y-0 lg:grid-cols-[16rem_1fr] lg:gap-x-12">
             <Portrait
+                crop="portrait"
               blogger={blogger}
               priority
               sizes="(min-width: 1024px) 256px, (min-width: 640px) 208px, 120px"

@@ -102,7 +102,7 @@ export const bloggers: Blogger[] = [
     topics: ["Капсульний гардероб", "Образи", "Б'юті"],
     hue: 335,
     photo: "/images/alisa.jpeg",
-    face: { x: 49, y: 27, zoom: 3.6 },
+    face: { x: 51, y: 27, zoom: 3.6 },
     posts: [
       { id: "l1", title: "Осінній капсульний гардероб", caption: "Дванадцять речей, з яких збирається тридцять образів.", likes: "24.6K", comments: 712, date: "сьогодні" },
       { id: "l2", title: "Базове пальто", caption: "Як вибрати модель, яка прослужить п'ять сезонів.", likes: "16.2K", comments: 358, date: "3 дні тому" },
