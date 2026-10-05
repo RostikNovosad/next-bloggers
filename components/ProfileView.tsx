@@ -8,7 +8,6 @@ import PostCarousel from "./PostCarousel";
 import PostModal from "./PostModal";
 import ChatDemo from "./ChatDemo";
 import TelegramButton from "./TelegramButton";
-import { ChatIcon, CloseIcon } from "./Icons";
 
 export default function ProfileView({ blogger }: { blogger: Blogger }) {
   const [open, setOpen] = useState<number | null>(null);
@@ -115,10 +114,10 @@ export default function ProfileView({ blogger }: { blogger: Blogger }) {
       <div
         role="dialog"
         aria-label={`Чат з ${blogger.name}`}
-        className={`fixed inset-x-0 bottom-0 z-50 h-[min(85dvh,44rem)] transition-[transform,opacity,visibility] duration-300 ease-out sm:inset-x-auto sm:bottom-24 sm:right-6 sm:h-[min(36rem,calc(100dvh-8rem))] sm:w-[24rem] ${
+        className={`fixed inset-x-0 bottom-0 z-50 h-[min(85dvh,44rem)] transition-[transform,opacity,visibility] duration-300 ease-out sm:inset-x-auto sm:bottom-6 sm:right-6 sm:origin-bottom-right sm:h-[min(36rem,calc(100dvh-7rem))] sm:w-[24rem] ${
           chatOpen
-            ? "visible translate-y-0 opacity-100"
-            : "invisible translate-y-full sm:translate-y-4 sm:opacity-0"
+            ? "visible translate-y-0 scale-100 opacity-100"
+            : "invisible translate-y-full sm:translate-y-3 sm:scale-95 sm:opacity-0"
         }`}
       >
         <ChatDemo
@@ -132,7 +131,7 @@ export default function ProfileView({ blogger }: { blogger: Blogger }) {
         <button
           type="button"
           onClick={openChat}
-          className="msg-in fixed bottom-[5.5rem] max-sm:hidden right-4 z-40 max-w-[16rem] rounded-2xl rounded-br-md bg-surface px-4 py-3 text-left text-sm leading-snug shadow-xl shadow-ink/15 sm:right-6"
+          className="msg-in fixed bottom-[6.5rem] max-sm:hidden right-4 z-40 max-w-[16rem] rounded-2xl rounded-br-md bg-surface px-4 py-3 text-left text-sm leading-snug shadow-xl shadow-ink/15 sm:right-6"
         >
           <span className="font-bold">{firstName}</span>
           <span className="mt-0.5 block text-muted">Привіт! Напишіть мені, відповім одразу.</span>
@@ -141,15 +140,24 @@ export default function ProfileView({ blogger }: { blogger: Blogger }) {
 
       <button
         type="button"
-        onClick={() => (chatOpen ? setChatOpen(false) : openChat())}
-        aria-label={chatOpen ? "Закрити чат" : `Відкрити чат з ${blogger.name}`}
-        className={`fixed bottom-4 right-4 z-40 flex h-14 items-center gap-2.5 rounded-full bg-text py-1 pl-1 pr-5 font-semibold text-white shadow-xl shadow-ink/25 transition-all duration-300 active:scale-95 sm:bottom-6 sm:right-6 ${
-          chatOpen ? "max-sm:pointer-events-none max-sm:translate-y-4 max-sm:opacity-0" : ""
+        onClick={openChat}
+        aria-label={`Відкрити чат з ${blogger.name}`}
+        className={`group fixed bottom-4 right-4 z-40 size-16 origin-bottom-right transition-all duration-300 sm:bottom-6 sm:right-6 ${
+          chatOpen ? "pointer-events-none scale-75 opacity-0" : "hover:scale-105 active:scale-95"
         }`}
       >
-        <Avatar blogger={blogger} size={48} />
-        {chatOpen ? <CloseIcon className="size-5" /> : <ChatIcon className="size-5" />}
-        {chatOpen ? "Закрити" : "Чат"}
+        <span
+          aria-hidden
+          className="absolute inset-0 animate-ping rounded-full bg-[var(--tone)] opacity-30"
+          style={{ animationIterationCount: 3 }}
+        />
+        <span className="relative block size-full rounded-full bg-surface p-1 shadow-xl shadow-ink/25">
+          <Avatar blogger={blogger} size={56} />
+        </span>
+        <span
+          aria-hidden
+          className="absolute bottom-0.5 right-0.5 size-4 rounded-full bg-[#22c55e] ring-2 ring-surface"
+        />
       </button>
 
       {open !== null && (
