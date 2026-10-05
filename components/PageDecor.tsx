@@ -2,7 +2,7 @@ const hues = ["28 90% 85%", "335 85% 88%", "160 70% 85%", "215 85% 87%"];
 
 /** Blobs spread by percentage so the decor covers the page at any height. */
 const blobs = Array.from({ length: 16 }, (_, i) => ({
-  top: `${(i * 6.4 + 1).toFixed(1)}%`,
+  top: `${(i * 5.6 + 1).toFixed(1)}%`,
   side: i % 2 === 0 ? "-left-10 sm:-left-24" : "-right-10 sm:-right-24",
   hue: hues[i % hues.length],
   opacity: i % 3 === 0 ? 0.8 : 0.65,
@@ -22,7 +22,7 @@ const dots = [
 /** One shared background layer for the whole page, so sections never show seams. */
 export default function PageDecor() {
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0">
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
       {blobs.map((b) => (
         <span
           key={b.top}
