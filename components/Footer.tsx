@@ -1,9 +1,9 @@
 export default function Footer() {
   return (
-    <footer className="relative mt-20 bg-gradient-to-r from-[hsl(215_90%_96%)] via-[hsl(335_90%_96%)] to-[hsl(28_95%_95%)]">
-      <span aria-hidden className="story-ring absolute inset-x-0 top-0 h-px opacity-40" />
-      <div className="container-x py-8 text-center">
-        <span className="text-story text-xl font-bold">Persona</span>
+    <footer className="mt-20 border-t border-line">
+      <div className="container-x flex flex-col gap-2 py-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+        <span className="font-bold text-text">Persona</span>
+        <span>Усі персонажі створені нейромережами й не є реальними людьми</span>
       </div>
     </footer>
   );
