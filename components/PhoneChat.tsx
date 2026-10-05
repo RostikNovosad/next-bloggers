@@ -20,9 +20,8 @@ export default function PhoneChat({ blogger }: { blogger: Blogger }) {
       <div className="aspect-[9/19.2] rounded-[3rem] bg-gradient-to-b from-[#4a4d55] via-[#16181c] to-[#3a3d44] p-[3px] shadow-[0_30px_60px_-20px_rgba(14,22,33,0.45),0_0_0_1px_rgba(0,0,0,0.5)]">
         <div className="size-full rounded-[2.85rem] bg-black p-[0.45rem]">
           <div className="relative flex size-full flex-col overflow-hidden rounded-[2.45rem] bg-bg">
-            <span className="absolute left-1/2 top-2.5 z-20 h-[1.45rem] w-[5.2rem] -translate-x-1/2 rounded-full bg-black" />
 
-            <div className="flex items-center gap-2 border-b border-line bg-surface px-3 pb-2.5 pt-[2.9rem]">
+            <div className="flex items-center gap-2 border-b border-line bg-surface px-3 pb-3 pt-4">
               <ChevronIcon className="size-5 rotate-180 text-accent" />
               <Avatar blogger={blogger} size={34} />
               <div className="min-w-0 flex-1">
