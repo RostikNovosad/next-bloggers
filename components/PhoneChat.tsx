@@ -17,7 +17,7 @@ export default function PhoneChat({ blogger }: { blogger: Blogger }) {
       <span className="absolute -left-[3px] top-[13rem] h-12 w-[3px] rounded-l bg-[#2a2c31]" />
       <span className="absolute -right-[3px] top-[10rem] h-[4.5rem] w-[3px] rounded-r bg-[#2a2c31]" />
 
-      <div className="aspect-[9/19.2] rounded-[3rem] bg-gradient-to-b from-[#4a4d55] via-[#16181c] to-[#3a3d44] p-[3px] shadow-[0_30px_60px_-20px_rgba(14,22,33,0.45),0_0_0_1px_rgba(0,0,0,0.5)]">
+      <div className="h-[36.27rem] rounded-[3rem] bg-gradient-to-b from-[#4a4d55] via-[#16181c] to-[#3a3d44] p-[3px] shadow-[0_30px_60px_-20px_rgba(14,22,33,0.45),0_0_0_1px_rgba(0,0,0,0.5)]">
         <div className="size-full rounded-[2.85rem] bg-black p-[0.45rem]">
           <div className="relative flex size-full flex-col overflow-hidden rounded-[2.45rem] bg-bg">
 
