@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import BloggerCard from "@/components/BloggerCard";
 import BloggerCardTall from "@/components/BloggerCardTall";
 import Stories from "@/components/Stories";
 import PhoneChat from "@/components/PhoneChat";
@@ -85,18 +84,8 @@ export default function Home() {
             <span className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-bg to-transparent" />
           </div>
 
-          <section id="bloggers" className="container-x relative scroll-mt-20">
-            <h2 className="mb-6 text-2xl font-bold sm:text-3xl">Блогери</h2>
-            <div className="grid gap-5 md:grid-cols-2 md:gap-6">
-              {bloggers.map((b) => (
-                <BloggerCard key={b.id} blogger={b} />
-              ))}
-            </div>
-          </section>
-
-          <section className="container-x relative mt-16 pb-16 sm:mt-24">
-            <h2 className="text-2xl font-bold sm:text-3xl">Блогери: варіант з портретами</h2>
-            <p className="mt-2 max-w-md text-muted">Альтернативна картка з акцентом на портрет.</p>
+          <section id="bloggers" className="container-x relative scroll-mt-20 pb-16">
+            <h2 className="text-2xl font-bold sm:text-3xl">Блогери</h2>
             <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {bloggers.map((b, i) => (
                 <BloggerCardTall key={b.id} blogger={b} index={i} />
