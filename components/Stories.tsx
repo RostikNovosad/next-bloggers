@@ -75,18 +75,19 @@ export default function Stories({ bloggers }: { bloggers: Blogger[] }) {
 
   return (
     <>
-      <ul className="-mx-4 flex gap-4 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0">
+      <ul className="grid grid-cols-4 gap-2 sm:flex sm:gap-7">
         {bloggers.map((b, i) => (
-          <li key={b.id} className="shrink-0">
+          <li key={b.id} className="sm:shrink-0">
             <button
               type="button"
               onClick={() => show(i)}
               aria-label={`Дивитися історії: ${b.name}`}
-              className="flex w-20 flex-col items-center gap-2 sm:w-24"
+              className="group flex w-full flex-col items-center gap-2 sm:w-[4.5rem]"
             >
-              <span className="hidden sm:block"><Avatar blogger={b} size={88} ring seen={seen.includes(b.id)} /></span>
-              <span className="sm:hidden"><Avatar blogger={b} size={76} ring seen={seen.includes(b.id)} /></span>
-              <span className="w-full truncate text-center text-sm font-medium">{b.name.split(" ")[0]}</span>
+              <span className="transition-transform duration-200 group-hover:scale-105 group-active:scale-95">
+                <Avatar blogger={b} size={64} ring seen={seen.includes(b.id)} />
+              </span>
+              <span className="w-full truncate text-center text-[0.8rem] font-medium">{b.name.split(" ")[0]}</span>
             </button>
           </li>
         ))}

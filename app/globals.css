@@ -74,6 +74,12 @@ body {
 .btn-ghost:hover { background: #dde2e9; }
 
 .story-ring { background: linear-gradient(45deg, #ffb400, #f5338f 55%, #7b3ff2); }
+.text-story {
+  background: linear-gradient(90deg, #f59e0b, #f5338f 55%, #7b3ff2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 .story-ring-seen { background: #c5ccd6; }
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }

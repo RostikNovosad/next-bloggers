@@ -18,19 +18,24 @@ export default function Home() {
     <>
       <Header />
       <main className="flex-1">
-        <section className="container-x grid items-center gap-10 pt-8 pb-4 sm:pt-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+        <section className="container-x grid items-center gap-10 pt-8 pb-4 sm:pt-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <div>
-            <h1 data-aos="fade-up" className="text-[clamp(2.25rem,6.5vw,4.5rem)] font-bold leading-[1.05]">
-              Блогери, з якими можна <span className="text-accent">поговорити</span>
+            <h1 data-aos="fade-up" className="text-balance text-[clamp(2rem,5.2vw,3.5rem)] font-bold leading-[1.1]">
+              Блогери, які <span className="text-story">відповідають</span>
             </h1>
-            <p data-aos="fade-up" data-aos-delay="80" className="mt-5 max-w-lg text-base leading-relaxed text-muted sm:text-lg">
-              Дивіться історії та публікації, ставте питання в чаті й переходьте до Telegram, щоб продовжити розмову.
+            <p data-aos="fade-up" data-aos-delay="80" className="mt-4 max-w-md text-base leading-relaxed text-muted sm:text-lg">
+              Дивіться історії, гортайте публікації й пишіть у чаті. Продовжити розмову можна в Telegram.
             </p>
-            <div data-aos="fade-up" data-aos-delay="160" className="mt-8">
-              <p className="mb-3 text-sm font-semibold text-muted">Історії</p>
+
+            <div data-aos="fade-up" data-aos-delay="160" className="mt-7 max-w-md rounded-2xl border border-line bg-surface p-4 sm:p-5">
+              <div className="mb-4 flex items-baseline justify-between">
+                <p className="text-sm font-bold">Історії</p>
+                <p className="text-xs text-muted">Натисніть, щоб відкрити</p>
+              </div>
               <Stories bloggers={bloggers} />
             </div>
-            <div data-aos="fade-up" data-aos-delay="240" className="mt-8 flex flex-col gap-3 sm:flex-row">
+
+            <div data-aos="fade-up" data-aos-delay="240" className="mt-6 flex flex-col gap-3 sm:flex-row">
               <a href="#bloggers" className="btn btn-dark">
                 Обрати блогера
                 <ArrowIcon className="size-4 rotate-90" />
