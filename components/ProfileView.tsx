@@ -1,46 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import type { Blogger } from "@/lib/bloggers";
 import Avatar from "./Avatar";
 import Portrait from "./Portrait";
-import PostTile from "./PostTile";
+import PostCarousel from "./PostCarousel";
 import PostModal from "./PostModal";
 import ChatDemo from "./ChatDemo";
 import TelegramButton from "./TelegramButton";
-import { ArrowIcon, BackIcon, ChatIcon } from "./Icons";
-
-function Neighbor({ blogger, dir }: { blogger: Blogger; dir: "prev" | "next" }) {
-  return (
-    <Link
-      href={`/${blogger.id}`}
-      className={`group flex items-center gap-3 rounded-2xl border border-line bg-surface p-3 transition-shadow hover:shadow-lg hover:shadow-ink/10 ${
-        dir === "next" ? "flex-row-reverse text-right" : ""
-      }`}
-    >
-      <Avatar blogger={blogger} size={44} ring />
-      <span className="min-w-0 flex-1">
-        <span className="block text-xs text-muted">{dir === "prev" ? "Попередній" : "Наступний"}</span>
-        <span className="block truncate text-sm font-bold">{blogger.name}</span>
-      </span>
-      {dir === "prev" ? (
-        <BackIcon className="size-4 text-muted transition-transform group-hover:-translate-x-1" />
-      ) : (
-        <ArrowIcon className="size-4 text-muted transition-transform group-hover:translate-x-1" />
-      )}
-    </Link>
-  );
-}
+import { ChatIcon } from "./Icons";
 
 export default function ProfileView({
   blogger,
-  prev,
-  next,
 }: {
   blogger: Blogger;
-  prev: Blogger;
-  next: Blogger;
 }) {
   const [open, setOpen] = useState<number | null>(null);
   const [liked, setLiked] = useState<string[]>([]);
@@ -119,19 +92,12 @@ export default function ProfileView({
           <section>
             <div data-aos="fade-up" className="flex items-baseline justify-between">
               <h2 className="text-xl font-bold sm:text-2xl">Публікації</h2>
-              <p className="text-sm text-muted">Натисніть, щоб відкрити</p>
+              <p className="text-sm text-muted">Гортайте, щоб побачити більше</p>
             </div>
-            <div data-aos="fade-up" className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
-              {blogger.posts.map((p, i) => (
-                <PostTile key={p.id} post={p} hue={blogger.hue} index={i} onOpen={() => setOpen(i)} />
-              ))}
+            <div data-aos="fade-up" className="mt-4">
+              <PostCarousel blogger={blogger} onOpen={setOpen} />
             </div>
           </section>
-
-          <div data-aos="fade-up" className="grid gap-2 sm:grid-cols-2">
-            <Neighbor blogger={prev} dir="prev" />
-            <Neighbor blogger={next} dir="next" />
-          </div>
         </div>
 
         {/* Sticky column on desktop; the chat inside turns into a bottom sheet below lg. */}

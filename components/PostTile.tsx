@@ -23,7 +23,7 @@ export default function PostTile({
       type="button"
       onClick={onOpen}
       aria-label={`Відкрити публікацію: ${post.title}`}
-      className="group relative flex aspect-[4/5] items-end overflow-hidden rounded-2xl p-3 text-left sm:p-4"
+      className="group relative flex aspect-[4/5] w-full items-end overflow-hidden rounded-2xl p-3 text-left sm:p-4"
       style={{ background: postBackground(hue, index) }}
     >
       <span className="text-sm font-bold leading-snug sm:text-[0.95rem]">{post.title}</span>

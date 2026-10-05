@@ -26,9 +26,6 @@ export default async function BloggerPage({ params }: PageProps<"/[id]">) {
   const blogger = getBlogger(id);
   if (!blogger) notFound();
 
-  const index = bloggers.findIndex((b) => b.id === blogger.id);
-  const prev = bloggers[(index + bloggers.length - 1) % bloggers.length];
-  const next = bloggers[(index + 1) % bloggers.length];
   const others = bloggers.filter((b) => b.id !== blogger.id);
   const firstName = blogger.name.split(" ")[0];
 
@@ -58,7 +55,7 @@ export default async function BloggerPage({ params }: PageProps<"/[id]">) {
           </ol>
         </nav>
 
-        <ProfileView blogger={blogger} prev={prev} next={next} />
+        <ProfileView blogger={blogger} />
 
         <section className="container-x relative mt-16">
           <div
