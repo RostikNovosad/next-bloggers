@@ -13,10 +13,10 @@ export default function Header() {
           Persona
         </Link>
         <nav className="flex items-center gap-6">
-          <Link href="/#bloggers" className="text-story hidden text-sm font-semibold sm:block">
+          <Link href="/#bloggers" className="hidden text-sm font-medium text-text transition-opacity hover:opacity-70 sm:block">
             Блогери
           </Link>
-          <Link href="/#how" className="text-story hidden text-sm font-semibold sm:block">
+          <Link href="/#how" className="hidden text-sm font-medium text-text transition-opacity hover:opacity-70 sm:block">
             Як це працює
           </Link>
           <TelegramButton label="Telegram" className="!min-h-10 !px-4 !text-sm" />
