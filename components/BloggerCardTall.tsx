@@ -23,7 +23,7 @@ export default function BloggerCardTall({ blogger, index }: { blogger: Blogger; 
       <div className="relative aspect-[4/5] overflow-hidden">
         <Portrait
           blogger={blogger}
-          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+          sizes="(min-width: 896px) 448px, (min-width: 640px) 50vw, 100vw"
           className="size-full transition-transform duration-700 ease-out group-hover:scale-105"
         />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-surface to-transparent" />

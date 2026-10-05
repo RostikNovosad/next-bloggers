@@ -68,11 +68,13 @@ export default function Home() {
 
         <div className="relative mt-16 sm:mt-20">
           <section id="bloggers" className="container-x relative scroll-mt-20 pb-16">
+            <div className="mx-auto max-w-4xl">
             <h2 className="text-2xl font-bold sm:text-3xl">Блогери</h2>
-            <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-6 grid gap-5 sm:grid-cols-2 sm:gap-6">
               {bloggers.map((b, i) => (
                 <BloggerCardTall key={b.id} blogger={b} index={i} />
               ))}
+            </div>
             </div>
           </section>
         </div>
