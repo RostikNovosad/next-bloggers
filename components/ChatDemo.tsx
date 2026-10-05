@@ -59,7 +59,7 @@ export default function ChatDemo({
             type="button"
             onClick={onClose}
             aria-label="Закрити чат"
-            className="grid size-10 place-items-center rounded-full text-muted transition-colors hover:bg-bg hover:text-text lg:hidden"
+            className="grid size-10 place-items-center rounded-full text-muted transition-colors hover:bg-bg hover:text-text"
           >
             <CloseIcon />
           </button>
