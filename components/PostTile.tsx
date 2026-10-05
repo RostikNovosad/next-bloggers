@@ -1,4 +1,5 @@
 import type { Post } from "@/lib/bloggers";
+import { CommentIcon, HeartIcon } from "./Icons";
 
 export function postBackground(hue: number, i: number) {
   const h = (hue + i * 18) % 360;
@@ -22,10 +23,14 @@ export default function PostTile({
       type="button"
       onClick={onOpen}
       aria-label={`Відкрити публікацію: ${post.title}`}
-      className="group relative flex aspect-square items-end overflow-hidden rounded-3xl p-4 text-left transition-transform duration-300 hover:-translate-y-1 sm:p-5"
+      className="group relative flex aspect-[4/5] items-end overflow-hidden rounded-xl p-4 text-left sm:p-5"
       style={{ background: postBackground(hue, index) }}
     >
-      <span className="font-display text-sm font-semibold leading-snug sm:text-base">{post.title}</span>
+      <span className="text-base font-bold leading-snug sm:text-lg">{post.title}</span>
+      <span className="absolute inset-0 flex items-center justify-center gap-5 bg-black/35 text-sm font-semibold text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+        <span className="inline-flex items-center gap-1.5"><HeartIcon /> {post.likes}</span>
+        <span className="inline-flex items-center gap-1.5"><CommentIcon /> {post.comments}</span>
+      </span>
     </button>
   );
 }

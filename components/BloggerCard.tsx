@@ -1,51 +1,44 @@
 import Link from "next/link";
 import type { Blogger } from "@/lib/bloggers";
 import Portrait from "./Portrait";
+import Avatar from "./Avatar";
 import { ArrowIcon } from "./Icons";
 
-export default function BloggerCard({ blogger, index, wide = true }: { blogger: Blogger; index: number; wide?: boolean }) {
-  const reversed = index % 2 === 1;
+/** Feed-style card: author row, large portrait, caption and CTA. */
+export default function BloggerCard({ blogger }: { blogger: Blogger }) {
   return (
-    <Link
-      href={`/${blogger.id}`}
-      data-aos="fade-up"
-      className={`group grid gap-6 rounded-[2rem] p-3 sm:p-4 ${
-        wide ? "md:grid-cols-[5fr_7fr] md:items-center md:gap-10 md:p-5" : ""
-      }`}
-      style={{ background: `hsl(${blogger.hue} 75% 93%)` }}
-    >
-      <Portrait
-        blogger={blogger}
-        sizes="(min-width: 768px) 40vw, 100vw"
-        className={`arch aspect-[4/5] w-full transition-transform duration-700 ease-out group-hover:scale-[1.015] ${
-          wide ? `md:aspect-[4/5] ${reversed ? "md:order-2" : ""}` : ""
-        }`}
-      />
-      <div className={`flex flex-col px-2 pb-3 md:px-4 md:pb-0 ${wide && reversed ? "md:order-1" : ""}`}>
-        <p className="text-xs text-muted">{blogger.niche}</p>
-        <h3 className="mt-3 font-display text-2xl font-semibold leading-tight sm:text-3xl lg:text-4xl">
-          {blogger.name}
-        </h3>
-        <p className="mt-1 text-sm text-muted">{blogger.handle}</p>
-        <p className="mt-5 max-w-md text-base leading-relaxed sm:text-lg">{blogger.tagline}</p>
-        <p className="mt-4 text-sm text-muted">{blogger.topics.join("  ·  ")}</p>
-
-        <dl className="mt-6 flex gap-10 border-t border-black/10 pt-5">
-          <div>
-            <dt className="text-xs text-muted">Підписники</dt>
-            <dd className="mt-1 font-display text-xl font-semibold">{blogger.followers}</dd>
-          </div>
-          <div>
-            <dt className="text-xs text-muted">Публікації</dt>
-            <dd className="mt-1 font-display text-xl font-semibold">{blogger.postsCount}</dd>
-          </div>
-        </dl>
-
-        <span className="btn btn-dark mt-7 w-full self-start md:w-auto">
-          Дивитися блог
-          <ArrowIcon className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
-        </span>
+    <article data-aos="fade-up" className="overflow-hidden rounded-2xl border border-line bg-surface">
+      <div className="flex items-center gap-3 p-4">
+        <Avatar blogger={blogger} size={48} ring />
+        <div className="min-w-0 flex-1">
+          <h3 className="truncate text-base font-bold leading-tight">{blogger.name}</h3>
+          <p className="truncate text-sm text-muted">{blogger.handle}</p>
+        </div>
+        <span className="text-sm font-medium text-muted">{blogger.niche}</span>
       </div>
-    </Link>
+
+      <Link href={`/${blogger.id}`} className="group block" aria-label={`Профіль: ${blogger.name}`}>
+        <Portrait
+          blogger={blogger}
+          sizes="(min-width: 1024px) 36rem, 100vw"
+          className="aspect-[4/5] w-full sm:aspect-square [&>*]:transition-transform [&>*]:duration-700 group-hover:[&>*]:scale-[1.03]"
+        />
+      </Link>
+
+      <div className="p-4 sm:p-5">
+        <div className="flex gap-6 text-sm">
+          <span><b className="font-bold">{blogger.followers}</b> <span className="text-muted">підписників</span></span>
+          <span><b className="font-bold">{blogger.postsCount}</b> <span className="text-muted">публікацій</span></span>
+        </div>
+        <p className="mt-3 leading-relaxed">
+          <b className="font-bold">{blogger.handle}</b> {blogger.tagline}
+        </p>
+        <p className="mt-1 text-sm text-muted">{blogger.topics.join(", ")}</p>
+        <Link href={`/${blogger.id}`} className="btn btn-primary mt-4 w-full">
+          Дивитися блог
+          <ArrowIcon />
+        </Link>
+      </div>
+    </article>
   );
 }

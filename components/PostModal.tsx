@@ -3,23 +3,27 @@
 import { useEffect } from "react";
 import type { Blogger } from "@/lib/bloggers";
 import { postBackground } from "./PostTile";
-import { CloseIcon, CommentIcon, HeartIcon, ArrowIcon, BackIcon } from "./Icons";
+import Avatar from "./Avatar";
+import TelegramButton from "./TelegramButton";
+import { CloseIcon, CommentIcon, HeartFillIcon, ArrowIcon, BackIcon } from "./Icons";
 
 export default function PostModal({
   blogger,
   index,
+  liked,
+  onLike,
   onClose,
   onChange,
 }: {
   blogger: Blogger;
   index: number;
+  liked: boolean;
+  onLike: () => void;
   onClose: () => void;
   onChange: (i: number) => void;
 }) {
   const post = blogger.posts[index];
   const total = blogger.posts.length;
-  const prev = () => onChange((index - 1 + total) % total);
-  const next = () => onChange((index + 1) % total);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -38,37 +42,52 @@ export default function PostModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-label={post.title}>
-      <button type="button" aria-label="Закрити" onClick={onClose} className="absolute inset-0 bg-[#0f1224]/50 backdrop-blur-sm" />
-      <div className="msg-in relative flex max-h-[92dvh] w-full max-w-md flex-col overflow-hidden rounded-t-[2rem] bg-surface sm:rounded-[2rem]">
-        <div className="flex items-center justify-between px-5 py-4">
-          <div>
-            <p className="text-sm font-semibold">{blogger.name}</p>
-            <p className="text-xs text-muted">{post.date}</p>
-          </div>
-          <button type="button" onClick={onClose} aria-label="Закрити" className="grid size-10 place-items-center rounded-full hover:bg-black/5">
-            <CloseIcon />
-          </button>
+      <button type="button" aria-label="Закрити" onClick={onClose} className="absolute inset-0 bg-black/70" />
+      <div className="msg-in relative flex max-h-[94dvh] w-full max-w-md flex-col overflow-hidden rounded-t-3xl bg-surface sm:rounded-2xl md:max-w-4xl md:flex-row">
+        <div className="flex aspect-[4/5] items-end p-6 md:aspect-auto md:min-h-[32rem] md:w-[55%]" style={{ background: postBackground(blogger.hue, index) }}>
+          <h3 className="text-3xl font-bold leading-tight">{post.title}</h3>
         </div>
-        <div
-          className="flex aspect-square items-end p-6"
-          style={{ background: postBackground(blogger.hue, index) }}
-        >
-          <h3 className="font-display text-2xl font-semibold leading-tight">{post.title}</h3>
-        </div>
-        <div className="overflow-y-auto p-5">
-          <p className="leading-relaxed text-text">{post.caption}</p>
-          <div className="mt-4 flex items-center gap-5 text-sm text-muted">
-            <span className="inline-flex items-center gap-1.5"><HeartIcon /> {post.likes}</span>
-            <span className="inline-flex items-center gap-1.5"><CommentIcon /> {post.comments}</span>
+
+        <div className="flex min-h-0 flex-1 flex-col">
+          <div className="flex items-center gap-3 border-b border-line p-4">
+            <Avatar blogger={blogger} size={40} ring />
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-sm font-bold">{blogger.handle}</p>
+              <p className="text-xs text-muted">{post.date}</p>
+            </div>
+            <button type="button" onClick={onClose} aria-label="Закрити" className="grid size-10 place-items-center rounded-full hover:bg-black/5">
+              <CloseIcon />
+            </button>
           </div>
-          <div className="mt-5 flex items-center justify-between border-t border-line pt-4">
-            <button type="button" onClick={prev} className="btn btn-ghost !min-h-10 !px-4 !text-sm">
-              <BackIcon /> Назад
-            </button>
-            <span className="text-sm text-muted">{index + 1} / {total}</span>
-            <button type="button" onClick={next} className="btn btn-ghost !min-h-10 !px-4 !text-sm">
-              Далі <ArrowIcon />
-            </button>
+
+          <div className="flex-1 overflow-y-auto p-4">
+            <p className="leading-relaxed"><b className="font-bold">{blogger.handle}</b> {post.caption}</p>
+          </div>
+
+          <div className="border-t border-line p-4">
+            <div className="flex items-center gap-4">
+              <button
+                type="button"
+                onClick={onLike}
+                aria-pressed={liked}
+                aria-label={liked ? "Прибрати вподобання" : "Вподобати"}
+                className={`transition-transform active:scale-90 ${liked ? "text-[#f5338f]" : ""}`}
+              >
+                <HeartFillIcon filled={liked} />
+              </button>
+              <span className="inline-flex items-center gap-1.5 text-sm text-muted"><CommentIcon className="size-5" /> {post.comments}</span>
+              <span className="ml-auto text-sm font-semibold">{post.likes} вподобань</span>
+            </div>
+            <div className="mt-4 flex items-center gap-2">
+              <button type="button" onClick={() => onChange((index - 1 + total) % total)} aria-label="Попередня публікація" className="btn btn-ghost !min-h-11 !px-3">
+                <BackIcon />
+              </button>
+              <button type="button" onClick={() => onChange((index + 1) % total)} aria-label="Наступна публікація" className="btn btn-ghost !min-h-11 !px-3">
+                <ArrowIcon />
+              </button>
+              <span className="text-sm text-muted">{index + 1} / {total}</span>
+              <TelegramButton label="Telegram" className="ml-auto !min-h-11" />
+            </div>
           </div>
         </div>
       </div>
