@@ -2,19 +2,6 @@ import type { Blogger } from "@/lib/bloggers";
 import Avatar from "./Avatar";
 import { ChevronIcon, SendIcon } from "./Icons";
 
-function StatusBar() {
-  return (
-    <div className="flex h-[3.1rem] items-end justify-between bg-surface px-7 pb-1 text-[0.8rem] font-semibold">
-      <span>9:41</span>
-      <span className="flex items-center gap-1.5">
-        <svg viewBox="0 0 18 12" className="h-2.5" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="0.8" /><rect x="5" y="5.5" width="3" height="6.5" rx="0.8" /><rect x="10" y="3" width="3" height="9" rx="0.8" /><rect x="15" y="0" width="3" height="12" rx="0.8" /></svg>
-        <svg viewBox="0 0 16 12" className="h-2.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M1.5 4.2a9.5 9.5 0 0 1 13 0M4 7a6 6 0 0 1 8 0" /><circle cx="8" cy="10" r="1.2" fill="currentColor" stroke="none" /></svg>
-        <svg viewBox="0 0 27 12" className="h-3"><rect x="0.5" y="0.5" width="22" height="11" rx="3.2" fill="none" stroke="currentColor" opacity="0.4" /><rect x="2" y="2" width="19" height="8" rx="2" fill="currentColor" /><rect x="24" y="4" width="2" height="4" rx="1" fill="currentColor" opacity="0.4" /></svg>
-      </span>
-    </div>
-  );
-}
-
 /** Decorative smartphone with a short conversation that plays once on load. */
 export default function PhoneChat({ blogger }: { blogger: Blogger }) {
   const q = blogger.dialog.quick[0];
@@ -35,9 +22,7 @@ export default function PhoneChat({ blogger }: { blogger: Blogger }) {
           <div className="relative flex size-full flex-col overflow-hidden rounded-[2.45rem] bg-bg">
             <span className="absolute left-1/2 top-2.5 z-20 h-[1.45rem] w-[5.2rem] -translate-x-1/2 rounded-full bg-black" />
 
-            <StatusBar />
-
-            <div className="flex items-center gap-2 border-b border-line bg-surface px-3 pb-2.5 pt-1.5">
+            <div className="flex items-center gap-2 border-b border-line bg-surface px-3 pb-2.5 pt-[2.9rem]">
               <ChevronIcon className="size-5 rotate-180 text-accent" />
               <Avatar blogger={blogger} size={34} />
               <div className="min-w-0 flex-1">
