@@ -25,32 +25,16 @@ export default function Home() {
           <span className="absolute -left-16 bottom-0 size-56 rounded-full opacity-60 blur-3xl" style={{ background: "hsl(160 70% 85%)" }} />
           <span className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-bg to-transparent" />
         </div>
-        <section className="container-x relative grid items-center gap-10 pt-8 pb-4 sm:pt-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-          <div>
+        <section className="container-x relative grid gap-y-8 pt-8 pb-4 sm:pt-12 lg:grid-cols-[1.1fr_0.9fr] lg:content-center lg:gap-x-16 lg:gap-y-0">
+          <div className="lg:col-start-1 lg:row-start-1 lg:self-end">
             <h1 data-aos="fade-up" className="text-balance text-[clamp(2rem,5.2vw,3.5rem)] font-bold leading-[1.1]">
               Блогери, які <span className="text-story">відповідають</span>
             </h1>
             <p data-aos="fade-up" data-aos-delay="80" className="mt-4 max-w-md text-base leading-relaxed text-muted sm:text-lg">
               Дивіться історії, гортайте публікації й пишіть у чаті. Продовжити розмову можна в Telegram.
             </p>
-
-            <div data-aos="fade-up" data-aos-delay="160" className="mt-7 max-w-md rounded-2xl border border-line bg-surface p-4 sm:p-5">
-              <div className="mb-4 flex items-baseline justify-between">
-                <p className="text-sm font-bold">Історії</p>
-                <p className="text-xs text-muted">Натисніть, щоб відкрити</p>
-              </div>
-              <Stories bloggers={bloggers} />
-            </div>
-
-            <div data-aos="fade-up" data-aos-delay="240" className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <a href="#bloggers" className="btn btn-dark">
-                Обрати блогера
-                <ArrowIcon className="size-4 rotate-90" />
-              </a>
-              <TelegramButton />
-            </div>
           </div>
-          <div className="relative pb-10 pt-2 lg:py-0">
+          <div className="relative py-2 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center lg:py-0">
             <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-[0.65] sm:scale-100">
               {[26, 36, 48].map((r, i) => (
                 <span
@@ -66,6 +50,23 @@ export default function Home() {
             </div>
             <div data-aos="fade-up" data-aos-delay="200">
               <PhoneChat blogger={bloggers[0]} />
+            </div>
+          </div>
+          <div className="lg:col-start-1 lg:row-start-2 lg:mt-7 lg:self-start">
+            <div data-aos="fade-up" data-aos-delay="160" className="max-w-md rounded-2xl border border-line bg-surface p-4 sm:p-5">
+              <div className="mb-4 flex items-baseline justify-between">
+                <p className="text-sm font-bold">Історії</p>
+                <p className="text-xs text-muted">Натисніть, щоб відкрити</p>
+              </div>
+              <Stories bloggers={bloggers} />
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="240" className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <a href="#bloggers" className="btn btn-dark">
+                Обрати блогера
+                <ArrowIcon className="size-4 rotate-90" />
+              </a>
+              <TelegramButton />
             </div>
           </div>
         </section>
