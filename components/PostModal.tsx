@@ -38,14 +38,14 @@ export default function PostModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-label={post.title}>
-      <button type="button" aria-label="Закрити" onClick={onClose} className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
-      <div className="msg-in relative flex max-h-[92dvh] w-full max-w-md flex-col overflow-hidden rounded-t-3xl border border-line bg-surface sm:rounded-3xl">
+      <button type="button" aria-label="Закрити" onClick={onClose} className="absolute inset-0 bg-[#0f1224]/50 backdrop-blur-sm" />
+      <div className="msg-in relative flex max-h-[92dvh] w-full max-w-md flex-col overflow-hidden rounded-t-[2rem] bg-surface sm:rounded-[2rem]">
         <div className="flex items-center justify-between px-5 py-4">
           <div>
             <p className="text-sm font-semibold">{blogger.name}</p>
             <p className="text-xs text-muted">{post.date}</p>
           </div>
-          <button type="button" onClick={onClose} aria-label="Закрити" className="grid size-10 place-items-center rounded-full hover:bg-white/5">
+          <button type="button" onClick={onClose} aria-label="Закрити" className="grid size-10 place-items-center rounded-full hover:bg-black/5">
             <CloseIcon />
           </button>
         </div>
@@ -53,10 +53,10 @@ export default function PostModal({
           className="flex aspect-square items-end p-6"
           style={{ background: postBackground(blogger.hue, index) }}
         >
-          <h3 className="text-2xl font-bold leading-tight">{post.title}</h3>
+          <h3 className="font-display text-2xl font-semibold leading-tight">{post.title}</h3>
         </div>
         <div className="overflow-y-auto p-5">
-          <p className="leading-relaxed text-text/90">{post.caption}</p>
+          <p className="leading-relaxed text-text">{post.caption}</p>
           <div className="mt-4 flex items-center gap-5 text-sm text-muted">
             <span className="inline-flex items-center gap-1.5"><HeartIcon /> {post.likes}</span>
             <span className="inline-flex items-center gap-1.5"><CommentIcon /> {post.comments}</span>

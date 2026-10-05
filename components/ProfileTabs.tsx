@@ -17,7 +17,7 @@ export default function ProfileTabs({ blogger }: { blogger: Blogger }) {
 
   return (
     <section className="container-x mt-12">
-      <div role="tablist" className="inline-flex rounded-full border border-line p-1">
+      <div role="tablist" className="inline-flex rounded-full bg-surface p-1">
         {tabs.map((t) => (
           <button
             key={t.id}
@@ -25,7 +25,7 @@ export default function ProfileTabs({ blogger }: { blogger: Blogger }) {
             aria-selected={tab === t.id}
             onClick={() => setTab(t.id)}
             className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-colors ${
-              tab === t.id ? "bg-accent text-accent-ink" : "text-muted hover:text-text"
+              tab === t.id ? "bg-text text-white" : "text-muted hover:text-text"
             }`}
           >
             {t.label}

@@ -34,7 +34,7 @@ export default function ChatDemo({ blogger }: { blogger: Blogger }) {
   const unused = blogger.dialog.quick.filter((c) => !messages.some((m) => m.text === c.q));
 
   return (
-    <div className="flex flex-col overflow-hidden rounded-3xl border border-line bg-surface">
+    <div className="flex flex-col overflow-hidden rounded-[2rem] bg-surface">
       <div ref={scroller} className="flex h-[22rem] flex-col gap-3 overflow-y-auto p-4 sm:h-[26rem] sm:p-6">
         {messages.map((m, i) => (
           <div
@@ -42,7 +42,7 @@ export default function ChatDemo({ blogger }: { blogger: Blogger }) {
             className={`msg-in max-w-[85%] rounded-2xl px-4 py-3 text-[0.95rem] leading-relaxed ${
               m.from === "ai"
                 ? "self-start rounded-bl-md bg-surface-2"
-                : "self-end rounded-br-md bg-accent text-accent-ink"
+                : "self-end rounded-br-md bg-accent text-white"
             }`}
           >
             {m.text}
@@ -64,7 +64,7 @@ export default function ChatDemo({ blogger }: { blogger: Blogger }) {
                 type="button"
                 onClick={() => ask(c.q, c.a)}
                 disabled={typing}
-                className="rounded-full border border-line px-4 py-2 text-left text-sm transition-colors hover:border-white/30 disabled:opacity-50"
+                className="rounded-full border border-line px-4 py-2 text-left text-sm transition-colors hover:border-accent hover:text-accent disabled:opacity-50"
               >
                 {c.q}
               </button>
