@@ -50,8 +50,8 @@ export default function Home() {
               <TelegramButton />
             </div>
           </div>
-          <div className="relative hidden lg:block">
-            <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="relative pb-10 pt-2 lg:py-0">
+            <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-[0.65] sm:scale-100">
               {[26, 36, 48].map((r, i) => (
                 <span
                   key={r}
@@ -59,10 +59,10 @@ export default function Home() {
                   style={{ width: `${r}rem`, height: `${r}rem`, borderColor: `rgba(29, 138, 219, ${0.2 - i * 0.06})` }}
                 />
               ))}
-              <span className="float absolute -left-[16rem] -top-[14rem] size-12 rounded-full" style={{ background: "hsl(215 85% 80%)" }} />
-              <span className="float absolute -right-[15rem] -top-[10rem] size-8 rounded-full" style={{ background: "hsl(335 80% 82%)", animationDelay: "-2s" }} />
-              <span className="float absolute -left-[14rem] top-[10rem] size-6 rounded-full" style={{ background: "hsl(160 60% 78%)", animationDelay: "-4s" }} />
-              <span className="float absolute -right-[16rem] top-[12rem] size-14 rounded-full" style={{ background: "hsl(28 90% 82%)", animationDelay: "-1s" }} />
+              <span className="float hidden lg:block absolute -left-[16rem] -top-[14rem] size-12 rounded-full" style={{ background: "hsl(215 85% 80%)" }} />
+              <span className="float hidden lg:block absolute -right-[15rem] -top-[10rem] size-8 rounded-full" style={{ background: "hsl(335 80% 82%)", animationDelay: "-2s" }} />
+              <span className="float hidden lg:block absolute -left-[14rem] top-[10rem] size-6 rounded-full" style={{ background: "hsl(160 60% 78%)", animationDelay: "-4s" }} />
+              <span className="float hidden lg:block absolute -right-[16rem] top-[12rem] size-14 rounded-full" style={{ background: "hsl(28 90% 82%)", animationDelay: "-1s" }} />
             </div>
             <div data-aos="fade-up" data-aos-delay="200">
               <PhoneChat blogger={bloggers[0]} />
