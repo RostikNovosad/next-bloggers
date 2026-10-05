@@ -1,23 +1,22 @@
-const blobs = [
-  { pos: "-left-24 top-10", size: "size-72", hue: "28 90% 85%", o: "opacity-70" },
-  { pos: "-right-20 top-0 lg:right-1/4", size: "size-72", hue: "335 85% 88%", o: "opacity-70" },
-  { pos: "-left-16 top-[34rem]", size: "size-56", hue: "160 70% 85%", o: "opacity-60" },
-  { pos: "-right-24 top-[52rem]", size: "size-72", hue: "215 85% 87%", o: "opacity-70" },
-  { pos: "-left-20 top-[82rem]", size: "size-72", hue: "335 85% 90%", o: "opacity-60" },
-  { pos: "-right-16 top-[112rem]", size: "size-64", hue: "28 90% 87%", o: "opacity-60" },
-  { pos: "-left-24 top-[146rem]", size: "size-80", hue: "215 85% 85%", o: "opacity-80" },
-  { pos: "-right-24 top-[156rem]", size: "size-80", hue: "335 85% 88%", o: "opacity-70" },
-  { pos: "-left-16 top-[170rem]", size: "size-72", hue: "28 90% 85%", o: "opacity-70" },
-  { pos: "right-1/4 top-[184rem]", size: "size-72", hue: "160 70% 84%", o: "opacity-70" },
-];
+const hues = ["28 90% 85%", "335 85% 88%", "160 70% 85%", "215 85% 87%"];
+
+/** Blobs spread by percentage so the decor covers the page at any height. */
+const blobs = Array.from({ length: 16 }, (_, i) => ({
+  top: `${(i * 6.4 + 1).toFixed(1)}%`,
+  side: i % 2 === 0 ? "-left-10 sm:-left-24" : "-right-10 sm:-right-24",
+  hue: hues[i % hues.length],
+  opacity: i % 3 === 0 ? 0.8 : 0.65,
+}));
 
 const dots = [
-  { pos: "right-[8%] top-[38rem]", size: "size-8", hue: "335 80% 82%", d: "0s" },
-  { pos: "left-[7%] top-[62rem]", size: "size-12", hue: "215 85% 80%", d: "-3s" },
-  { pos: "right-[6%] top-[92rem]", size: "size-6", hue: "160 60% 78%", d: "-5s" },
-  { pos: "left-[6%] top-[150rem]", size: "size-8", hue: "28 90% 82%", d: "-2s" },
-  { pos: "right-[8%] top-[162rem]", size: "size-12", hue: "335 80% 82%", d: "-4s" },
-  { pos: "left-[9%] top-[176rem]", size: "size-6", hue: "215 85% 80%", d: "-1s" },
+  { top: "9%", side: "right-[8%]", size: "size-8", hue: "335 80% 82%", d: "0s" },
+  { top: "17%", side: "left-[7%]", size: "size-12", hue: "215 85% 80%", d: "-3s" },
+  { top: "29%", side: "right-[6%]", size: "size-6", hue: "160 60% 78%", d: "-5s" },
+  { top: "41%", side: "left-[6%]", size: "size-8", hue: "28 90% 82%", d: "-2s" },
+  { top: "53%", side: "right-[8%]", size: "size-12", hue: "335 80% 82%", d: "-4s" },
+  { top: "65%", side: "left-[9%]", size: "size-6", hue: "215 85% 80%", d: "-1s" },
+  { top: "77%", side: "right-[7%]", size: "size-8", hue: "160 60% 78%", d: "-6s" },
+  { top: "89%", side: "left-[8%]", size: "size-10", hue: "28 90% 82%", d: "-3s" },
 ];
 
 /** One shared background layer for the whole page, so sections never show seams. */
@@ -26,16 +25,16 @@ export default function PageDecor() {
     <div aria-hidden className="pointer-events-none absolute inset-0">
       {blobs.map((b) => (
         <span
-          key={b.pos}
-          className={`absolute ${b.pos} ${b.size} ${b.o} rounded-full blur-3xl`}
-          style={{ background: `hsl(${b.hue})` }}
+          key={b.top}
+          className={`absolute ${b.side} size-64 rounded-full blur-3xl sm:size-72`}
+          style={{ top: b.top, background: `hsl(${b.hue})`, opacity: b.opacity }}
         />
       ))}
       {dots.map((d) => (
         <span
-          key={d.pos}
-          className={`float absolute hidden lg:block ${d.pos} ${d.size} rounded-full`}
-          style={{ background: `hsl(${d.hue})`, animationDelay: d.d }}
+          key={d.top}
+          className={`float absolute ${d.side} ${d.size} rounded-full`}
+          style={{ top: d.top, background: `hsl(${d.hue})`, animationDelay: d.d }}
         />
       ))}
     </div>
