@@ -1,4 +1,4 @@
-const links = ["Політика конфіденційності", "Правила"];
+const links = ['Політика конфіденційності', 'Правила використання'];
 
 export default function Footer() {
   return (
@@ -7,7 +7,11 @@ export default function Footer() {
         <span className="font-bold text-text">Persona</span>
         <nav className="flex flex-wrap gap-x-6 gap-y-1">
           {links.map((label) => (
-            <a key={label} href="#" className="text-muted transition-colors hover:text-text">
+            <a
+              key={label}
+              href="#"
+              className="font-medium text-[#3d4651] transition-colors hover:text-text"
+            >
               {label}
             </a>
           ))}
