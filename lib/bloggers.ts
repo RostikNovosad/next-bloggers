@@ -24,6 +24,8 @@ export type Blogger = {
   hue: number;
   /** Portrait path in /public; placeholder is rendered until the file exists */
   photo?: string;
+  /** Face centre and zoom in the portrait, in % of the image; used to crop round avatars. */
+  face?: { x: number; y: number; zoom: number };
   posts: Post[];
   dialog: { greeting: string; quick: { q: string; a: string }[] };
 };
@@ -43,6 +45,8 @@ export const bloggers: Blogger[] = [
     postsCount: 312,
     topics: ["AI-інструменти", "Стартапи", "Продуктивність"],
     hue: 215,
+    photo: "/images/artem.jpeg",
+    face: { x: 48, y: 31, zoom: 1.9 },
     posts: [
       { id: "a1", title: "Мій стек на 2026", caption: "Сім інструментів, якими я користуюся щодня, і два, від яких відмовився.", likes: "12.4K", comments: 318, date: "2 дні тому" },
       { id: "a2", title: "Як запустити MVP за тиждень", caption: "Покроковий план без зайвих дзвінків і презентацій.", likes: "9.8K", comments: 204, date: "5 днів тому" },
@@ -69,6 +73,8 @@ export const bloggers: Blogger[] = [
     postsCount: 274,
     topics: ["Трейлраннінг", "Подорожі", "Спорядження"],
     hue: 28,
+    photo: "/images/maksym.jpeg",
+    face: { x: 50, y: 35, zoom: 3.2 },
     posts: [
       { id: "m1", title: "Стежка над хмарами", caption: "Сорок кілометрів, три перевали та світанок на висоті 2800 метрів.", likes: "18.9K", comments: 540, date: "вчора" },
       { id: "m2", title: "Що в рюкзаку", caption: "Легкий набір на два дні в горах: вага та список.", likes: "11.3K", comments: 267, date: "4 дні тому" },
@@ -95,6 +101,8 @@ export const bloggers: Blogger[] = [
     postsCount: 486,
     topics: ["Капсульний гардероб", "Образи", "Б'юті"],
     hue: 335,
+    photo: "/images/alisa.jpeg",
+    face: { x: 49, y: 27, zoom: 3.6 },
     posts: [
       { id: "l1", title: "Осінній капсульний гардероб", caption: "Дванадцять речей, з яких збирається тридцять образів.", likes: "24.6K", comments: 712, date: "сьогодні" },
       { id: "l2", title: "Базове пальто", caption: "Як вибрати модель, яка прослужить п'ять сезонів.", likes: "16.2K", comments: 358, date: "3 дні тому" },
@@ -121,6 +129,8 @@ export const bloggers: Blogger[] = [
     postsCount: 398,
     topics: ["Звички", "Дім і затишок", "Подорожі"],
     hue: 160,
+    photo: "/images/vira.jpeg",
+    face: { x: 47, y: 31, zoom: 2.1 },
     posts: [
       { id: "v1", title: "Ранок без поспіху", caption: "Мій розпорядок перших двох годин дня.", likes: "21.3K", comments: 603, date: "вчора" },
       { id: "v2", title: "Домашній куточок", caption: "Як за вихідні зробити місце для відпочинку.", likes: "14.5K", comments: 289, date: "3 дні тому" },

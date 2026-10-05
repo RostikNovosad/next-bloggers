@@ -16,8 +16,9 @@ export default function Avatar({
   const portrait = (
     <Portrait
       blogger={blogger}
-      sizes={`${size}px`}
+      sizes={`${Math.ceil(size * (blogger.face?.zoom ?? 1))}px`}
       className="size-full rounded-full"
+      face={blogger.face}
     />
   );
   if (!ring) {
