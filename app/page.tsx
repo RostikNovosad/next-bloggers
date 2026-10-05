@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageDecor from "@/components/PageDecor";
 import BloggerCardTall from "@/components/BloggerCardTall";
 import Stories from "@/components/Stories";
 import PhoneChat from "@/components/PhoneChat";
@@ -17,14 +18,8 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="flex-1">
-        <div className="relative overflow-hidden">
-        <div aria-hidden className="pointer-events-none absolute inset-0">
-          <span className="absolute -left-24 top-10 size-72 rounded-full opacity-70 blur-3xl" style={{ background: "hsl(28 90% 85%)" }} />
-          <span className="absolute -right-20 top-0 size-72 rounded-full opacity-70 blur-3xl lg:right-1/4" style={{ background: "hsl(335 85% 88%)" }} />
-          <span className="absolute -left-16 bottom-0 size-56 rounded-full opacity-60 blur-3xl" style={{ background: "hsl(160 70% 85%)" }} />
-          <span className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-bg to-transparent" />
-        </div>
+      <main className="relative flex-1 overflow-x-clip">
+        <PageDecor />
         <section className="container-x relative grid gap-y-8 pt-8 pb-4 sm:pt-12 lg:grid-cols-[1.1fr_0.9fr] lg:content-center lg:gap-x-16 lg:gap-y-0">
           <div className="lg:col-start-1 lg:row-start-1 lg:self-end">
             <h1 data-aos="fade-up" className="text-balance text-[clamp(2rem,5.2vw,3.5rem)] font-bold leading-[1.1]">
@@ -70,20 +65,8 @@ export default function Home() {
             </div>
           </div>
         </section>
-        </div>
 
-        <div className="relative mt-8 overflow-hidden pt-8 sm:mt-12">
-          <div aria-hidden className="pointer-events-none absolute inset-0">
-            <span className="absolute -right-24 top-0 size-72 rounded-full opacity-70 blur-3xl" style={{ background: "hsl(215 85% 87%)" }} />
-            <span className="absolute -left-20 top-1/3 size-72 rounded-full opacity-60 blur-3xl" style={{ background: "hsl(335 85% 90%)" }} />
-            <span className="absolute -right-16 top-2/3 size-64 rounded-full opacity-60 blur-3xl" style={{ background: "hsl(28 90% 87%)" }} />
-            <span className="absolute -left-24 bottom-0 size-64 rounded-full opacity-60 blur-3xl" style={{ background: "hsl(160 70% 86%)" }} />
-            <span className="float hidden lg:block absolute left-[8%] top-24 size-8 rounded-full" style={{ background: "hsl(335 80% 82%)" }} />
-            <span className="float hidden lg:block absolute right-[7%] top-[45%] size-12 rounded-full" style={{ background: "hsl(215 85% 80%)", animationDelay: "-3s" }} />
-            <span className="float hidden lg:block absolute left-[5%] bottom-[18%] size-6 rounded-full" style={{ background: "hsl(160 60% 78%)", animationDelay: "-5s" }} />
-            <span className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-bg to-transparent" />
-          </div>
-
+        <div className="relative mt-16 sm:mt-20">
           <section id="bloggers" className="container-x relative scroll-mt-20 pb-16">
             <h2 className="text-2xl font-bold sm:text-3xl">Блогери</h2>
             <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
