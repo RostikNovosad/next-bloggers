@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BloggerCard from "@/components/BloggerCard";
+import BloggerCardTall from "@/components/BloggerCardTall";
 import Stories from "@/components/Stories";
 import PhoneChat from "@/components/PhoneChat";
 import TelegramButton from "@/components/TelegramButton";
@@ -72,16 +73,39 @@ export default function Home() {
         </section>
         </div>
 
-        <section id="bloggers" className="container-x mt-16 scroll-mt-20 sm:mt-24">
-          <h2 className="mb-6 text-2xl font-bold sm:text-3xl">Блогери</h2>
-          <div className="grid gap-5 md:grid-cols-2 md:gap-6">
-            {bloggers.map((b) => (
-              <BloggerCard key={b.id} blogger={b} />
-            ))}
+        <div className="relative mt-8 overflow-hidden pt-8 sm:mt-12">
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <span className="absolute -right-24 top-0 size-72 rounded-full opacity-70 blur-3xl" style={{ background: "hsl(215 85% 87%)" }} />
+            <span className="absolute -left-20 top-1/3 size-72 rounded-full opacity-60 blur-3xl" style={{ background: "hsl(335 85% 90%)" }} />
+            <span className="absolute -right-16 top-2/3 size-64 rounded-full opacity-60 blur-3xl" style={{ background: "hsl(28 90% 87%)" }} />
+            <span className="absolute -left-24 bottom-0 size-64 rounded-full opacity-60 blur-3xl" style={{ background: "hsl(160 70% 86%)" }} />
+            <span className="float hidden lg:block absolute left-[8%] top-24 size-8 rounded-full" style={{ background: "hsl(335 80% 82%)" }} />
+            <span className="float hidden lg:block absolute right-[7%] top-[45%] size-12 rounded-full" style={{ background: "hsl(215 85% 80%)", animationDelay: "-3s" }} />
+            <span className="float hidden lg:block absolute left-[5%] bottom-[18%] size-6 rounded-full" style={{ background: "hsl(160 60% 78%)", animationDelay: "-5s" }} />
+            <span className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-bg to-transparent" />
           </div>
-        </section>
 
-        <section id="how" className="container-x mt-24 scroll-mt-20">
+          <section id="bloggers" className="container-x relative scroll-mt-20">
+            <h2 className="mb-6 text-2xl font-bold sm:text-3xl">Блогери</h2>
+            <div className="grid gap-5 md:grid-cols-2 md:gap-6">
+              {bloggers.map((b) => (
+                <BloggerCard key={b.id} blogger={b} />
+              ))}
+            </div>
+          </section>
+
+          <section className="container-x relative mt-16 pb-16 sm:mt-24">
+            <h2 className="text-2xl font-bold sm:text-3xl">Блогери: варіант з портретами</h2>
+            <p className="mt-2 max-w-md text-muted">Альтернативна картка з акцентом на портрет.</p>
+            <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {bloggers.map((b, i) => (
+                <BloggerCardTall key={b.id} blogger={b} index={i} />
+              ))}
+            </div>
+          </section>
+        </div>
+
+        <section id="how" className="container-x scroll-mt-20">
           <h2 data-aos="fade-up" className="text-2xl font-bold sm:text-3xl">Як це працює</h2>
           <div className="mt-6 grid gap-3 sm:grid-cols-3 sm:gap-4">
             {steps.map((s, i) => (
