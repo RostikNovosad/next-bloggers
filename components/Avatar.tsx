@@ -1,5 +1,5 @@
-import type { Blogger } from "@/lib/bloggers";
-import Portrait from "./Portrait";
+import type { Blogger } from '@/lib/bloggers';
+import Portrait from './Portrait';
 
 /** Round avatar, optionally wrapped in a story ring. */
 export default function Avatar({
@@ -13,16 +13,28 @@ export default function Avatar({
   ring?: boolean;
   seen?: boolean;
 }) {
-  const portrait = <Portrait blogger={blogger} sizes={`${size}px`} className="size-full rounded-full" />;
+  const portrait = (
+    <Portrait
+      blogger={blogger}
+      sizes={`${size}px`}
+      className="size-full rounded-full"
+    />
+  );
   if (!ring) {
-    return <div className="shrink-0" style={{ width: size, height: size }}>{portrait}</div>;
+    return (
+      <div className="shrink-0" style={{ width: size, height: size }}>
+        {portrait}
+      </div>
+    );
   }
   return (
     <div
-      className={`shrink-0 rounded-full p-[3px] ${seen ? "story-ring-seen" : "story-ring"}`}
+      className={`shrink-0 rounded-full p-0.5 ${
+        seen ? 'story-ring-seen' : 'story-ring'
+      }`}
       style={{ width: size, height: size }}
     >
-      <div className="size-full rounded-full bg-bg p-[3px]">{portrait}</div>
+      <div className="size-full rounded-full bg-bg p-0.5">{portrait}</div>
     </div>
   );
 }

@@ -35,7 +35,7 @@ export default function BloggerCardTall({ blogger, index }: { blogger: Blogger; 
           <SendIcon className="size-6" />
         </div>
         <p className="text-sm font-bold">{blogger.followers} підписників</p>
-        <p className="line-clamp-2 text-sm leading-relaxed">
+        <p className="line-clamp-2 min-h-[2lh] text-sm leading-relaxed">
           <span className="font-bold">{blogger.name}</span> <span className="text-muted">{blogger.tagline}</span>
         </p>
         <span className="mt-auto inline-flex items-center justify-between gap-2 border-t border-line pt-3 text-sm font-semibold">
