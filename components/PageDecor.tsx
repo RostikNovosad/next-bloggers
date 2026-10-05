@@ -5,12 +5,19 @@ const blobs = [
   { pos: "-right-24 top-[52rem]", size: "size-72", hue: "215 85% 87%", o: "opacity-70" },
   { pos: "-left-20 top-[82rem]", size: "size-72", hue: "335 85% 90%", o: "opacity-60" },
   { pos: "-right-16 top-[112rem]", size: "size-64", hue: "28 90% 87%", o: "opacity-60" },
+  { pos: "-left-24 top-[146rem]", size: "size-80", hue: "215 85% 85%", o: "opacity-80" },
+  { pos: "-right-24 top-[156rem]", size: "size-80", hue: "335 85% 88%", o: "opacity-70" },
+  { pos: "-left-16 top-[170rem]", size: "size-72", hue: "28 90% 85%", o: "opacity-70" },
+  { pos: "right-1/4 top-[184rem]", size: "size-72", hue: "160 70% 84%", o: "opacity-70" },
 ];
 
 const dots = [
   { pos: "right-[8%] top-[38rem]", size: "size-8", hue: "335 80% 82%", d: "0s" },
   { pos: "left-[7%] top-[62rem]", size: "size-12", hue: "215 85% 80%", d: "-3s" },
   { pos: "right-[6%] top-[92rem]", size: "size-6", hue: "160 60% 78%", d: "-5s" },
+  { pos: "left-[6%] top-[150rem]", size: "size-8", hue: "28 90% 82%", d: "-2s" },
+  { pos: "right-[8%] top-[162rem]", size: "size-12", hue: "335 80% 82%", d: "-4s" },
+  { pos: "left-[9%] top-[176rem]", size: "size-6", hue: "215 85% 80%", d: "-1s" },
 ];
 
 /** One shared background layer for the whole page, so sections never show seams. */
