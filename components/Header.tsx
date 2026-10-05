@@ -3,7 +3,7 @@ import TelegramButton from "./TelegramButton";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-surface/90 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-40 border-b border-line bg-surface/90 backdrop-blur-md">
       <div className="container-x flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2 text-lg font-bold">
           Persona
