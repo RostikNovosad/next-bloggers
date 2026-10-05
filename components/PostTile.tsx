@@ -23,10 +23,10 @@ export default function PostTile({
       type="button"
       onClick={onOpen}
       aria-label={`Відкрити публікацію: ${post.title}`}
-      className="group relative flex aspect-[4/5] items-end overflow-hidden rounded-xl p-4 text-left sm:p-5"
+      className="group relative flex aspect-[4/5] items-end overflow-hidden rounded-2xl p-3 text-left sm:p-4"
       style={{ background: postBackground(hue, index) }}
     >
-      <span className="text-base font-bold leading-snug sm:text-lg">{post.title}</span>
+      <span className="text-sm font-bold leading-snug sm:text-[0.95rem]">{post.title}</span>
       <span className="absolute inset-0 flex items-center justify-center gap-5 bg-black/35 text-sm font-semibold text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
         <span className="inline-flex items-center gap-1.5"><HeartIcon /> {post.likes}</span>
         <span className="inline-flex items-center gap-1.5"><CommentIcon /> {post.comments}</span>

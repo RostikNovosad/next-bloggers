@@ -1,12 +1,16 @@
-const hues = ["28 90% 85%", "335 85% 88%", "160 70% 85%", "215 85% 87%"];
+const defaultHues = ["28 90% 85%", "335 85% 88%", "160 70% 85%", "215 85% 87%"];
+
+/** Four soft tints around one hue, so a page can take on a single blogger's tone. */
+const tinted = (h: number) => [0, 28, -28, 56].map((d) => `${(h + d + 360) % 360} 85% 87%`);
 
 /** Blobs spread by percentage so the decor covers the page at any height. */
-const blobs = Array.from({ length: 16 }, (_, i) => ({
-  top: `${(i * 5.6 + 1).toFixed(1)}%`,
-  side: i % 2 === 0 ? "-left-10 sm:-left-24" : "-right-10 sm:-right-24",
-  hue: hues[i % hues.length],
-  opacity: i % 3 === 0 ? 0.8 : 0.65,
-}));
+const blobs = (hues: string[]) =>
+  Array.from({ length: 16 }, (_, i) => ({
+    top: `${(i * 5.6 + 1).toFixed(1)}%`,
+    side: i % 2 === 0 ? "-left-10 sm:-left-24" : "-right-10 sm:-right-24",
+    hue: hues[i % hues.length],
+    opacity: i % 3 === 0 ? 0.8 : 0.65,
+  }));
 
 const dots = [
   { top: "9%", side: "right-[8%]", size: "size-8", hue: "335 80% 82%", d: "0s" },
@@ -20,10 +24,11 @@ const dots = [
 ];
 
 /** One shared background layer for the whole page, so sections never show seams. */
-export default function PageDecor() {
+export default function PageDecor({ hue }: { hue?: number }) {
+  const hues = hue === undefined ? defaultHues : tinted(hue);
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      {blobs.map((b) => (
+      {blobs(hues).map((b) => (
         <span
           key={b.top}
           className={`absolute ${b.side} size-64 rounded-full blur-3xl sm:size-72`}
@@ -34,7 +39,7 @@ export default function PageDecor() {
         <span
           key={d.top}
           className={`float absolute ${d.side} ${d.size} rounded-full`}
-          style={{ top: d.top, background: `hsl(${d.hue})`, animationDelay: d.d }}
+          style={{ top: d.top, background: `hsl(${hue === undefined ? d.hue : hues[dots.indexOf(d) % hues.length]})`, animationDelay: d.d }}
         />
       ))}
     </div>

@@ -3,14 +3,22 @@
 import { useEffect, useRef, useState } from "react";
 import type { Blogger } from "@/lib/bloggers";
 import Avatar from "./Avatar";
-import { SendIcon } from "./Icons";
+import { CloseIcon, SendIcon } from "./Icons";
 import TelegramButton from "./TelegramButton";
 
 type Msg = { from: "user" | "ai"; text: string; time?: string };
 
 const now = () => new Date().toLocaleTimeString("uk-UA", { hour: "2-digit", minute: "2-digit" });
 
-export default function ChatDemo({ blogger }: { blogger: Blogger }) {
+export default function ChatDemo({
+  blogger,
+  className = "",
+  onClose,
+}: {
+  blogger: Blogger;
+  className?: string;
+  onClose?: () => void;
+}) {
   const [messages, setMessages] = useState<Msg[]>([{ from: "ai", text: blogger.dialog.greeting }]);
   const [typing, setTyping] = useState(false);
   const [draft, setDraft] = useState("");
@@ -39,18 +47,28 @@ export default function ChatDemo({ blogger }: { blogger: Blogger }) {
   const unused = blogger.dialog.quick.filter((c) => !messages.some((m) => m.text === c.q));
 
   return (
-    <div className="mx-auto flex max-w-2xl flex-col overflow-hidden rounded-2xl border border-line bg-surface">
+    <div className={`flex h-full flex-col overflow-hidden border border-line bg-surface ${className}`}>
       <div className="flex items-center gap-3 border-b border-line px-4 py-3">
         <Avatar blogger={blogger} size={40} />
-        <div>
-          <p className="font-bold leading-tight">{blogger.name}</p>
-          <p className="text-sm text-accent">{typing ? "друкує…" : "в мережі"}</p>
+        <div className="min-w-0 flex-1">
+          <p className="truncate font-bold leading-tight">{blogger.name}</p>
+          <p className="text-sm text-[var(--tone,var(--accent))]">{typing ? "друкує…" : "в мережі"}</p>
         </div>
+        {onClose && (
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Закрити чат"
+            className="grid size-10 place-items-center rounded-full text-muted transition-colors hover:bg-bg hover:text-text lg:hidden"
+          >
+            <CloseIcon />
+          </button>
+        )}
       </div>
 
       <div
         ref={scroller}
-        className="flex h-[28rem] flex-col gap-2 overflow-y-auto p-3 sm:h-[32rem] sm:p-5"
+        className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto p-3 sm:p-4"
         style={{ background: `hsl(${blogger.hue} 45% 91%)` }}
       >
         {messages.map((m, i) => (
@@ -80,7 +98,7 @@ export default function ChatDemo({ blogger }: { blogger: Blogger }) {
                 key={c.q}
                 type="button"
                 onClick={() => ask(c.q, c.a)}
-                className="rounded-xl bg-white/80 px-4 py-2.5 text-left text-[0.95rem] font-medium text-accent backdrop-blur transition-colors hover:bg-white"
+                className="rounded-xl bg-white/80 px-4 py-2.5 text-left text-[0.95rem] font-medium text-[var(--tone,var(--accent))] backdrop-blur transition-colors hover:bg-white"
               >
                 {c.q}
               </button>
@@ -109,7 +127,7 @@ export default function ChatDemo({ blogger }: { blogger: Blogger }) {
           type="submit"
           aria-label="Надіслати"
           disabled={typing || !draft.trim()}
-          className="grid size-11 shrink-0 place-items-center rounded-full bg-accent text-white transition-opacity disabled:opacity-40"
+          className="grid size-11 shrink-0 place-items-center rounded-full bg-[var(--tone,var(--accent))] text-white transition-opacity disabled:opacity-40"
         >
           <SendIcon />
         </button>
