@@ -9,7 +9,7 @@ export default function PhoneChat({ blogger }: { blogger: Blogger }) {
 
   return (
     <div aria-hidden className="relative mx-auto w-[17rem] select-none">
-      <div className="absolute -inset-10 -z-10 rounded-full opacity-60 blur-3xl" style={{ background: `hsl(${blogger.hue} 80% 85%)` }} />
+      <div className="absolute -inset-10 rounded-full opacity-60 blur-3xl" style={{ background: `hsl(${blogger.hue} 80% 85%)` }} />
 
       {/* side buttons */}
       <span className="absolute -left-[3px] top-[6.5rem] h-7 w-[3px] rounded-l bg-[#2a2c31]" />

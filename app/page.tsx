@@ -18,7 +18,14 @@ export default function Home() {
     <>
       <Header />
       <main className="flex-1">
-        <section className="container-x grid items-center gap-10 pt-8 pb-4 sm:pt-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+        <div className="relative overflow-hidden">
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <span className="absolute -left-24 top-10 size-72 rounded-full opacity-70 blur-3xl" style={{ background: "hsl(28 90% 85%)" }} />
+          <span className="absolute -right-20 top-0 size-72 rounded-full opacity-70 blur-3xl lg:right-1/4" style={{ background: "hsl(335 85% 88%)" }} />
+          <span className="absolute -left-16 bottom-0 size-56 rounded-full opacity-60 blur-3xl" style={{ background: "hsl(160 70% 85%)" }} />
+          <span className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-bg to-transparent" />
+        </div>
+        <section className="container-x relative grid items-center gap-10 pt-8 pb-4 sm:pt-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <div>
             <h1 data-aos="fade-up" className="text-balance text-[clamp(2rem,5.2vw,3.5rem)] font-bold leading-[1.1]">
               Блогери, які <span className="text-story">відповідають</span>
@@ -43,10 +50,26 @@ export default function Home() {
               <TelegramButton />
             </div>
           </div>
-          <div data-aos="fade-up" data-aos-delay="200" className="hidden lg:block">
-            <PhoneChat blogger={bloggers[0]} />
+          <div className="relative hidden lg:block">
+            <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              {[26, 36, 48].map((r, i) => (
+                <span
+                  key={r}
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border"
+                  style={{ width: `${r}rem`, height: `${r}rem`, borderColor: `rgba(29, 138, 219, ${0.2 - i * 0.06})` }}
+                />
+              ))}
+              <span className="float absolute -left-[16rem] -top-[14rem] size-12 rounded-full" style={{ background: "hsl(215 85% 80%)" }} />
+              <span className="float absolute -right-[15rem] -top-[10rem] size-8 rounded-full" style={{ background: "hsl(335 80% 82%)", animationDelay: "-2s" }} />
+              <span className="float absolute -left-[14rem] top-[10rem] size-6 rounded-full" style={{ background: "hsl(160 60% 78%)", animationDelay: "-4s" }} />
+              <span className="float absolute -right-[16rem] top-[12rem] size-14 rounded-full" style={{ background: "hsl(28 90% 82%)", animationDelay: "-1s" }} />
+            </div>
+            <div data-aos="fade-up" data-aos-delay="200">
+              <PhoneChat blogger={bloggers[0]} />
+            </div>
           </div>
         </section>
+        </div>
 
         <section id="bloggers" className="container-x mt-16 scroll-mt-20 sm:mt-24">
           <h2 className="mb-6 text-2xl font-bold sm:text-3xl">Блогери</h2>
