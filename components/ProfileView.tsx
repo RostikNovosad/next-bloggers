@@ -48,43 +48,32 @@ export default function ProfileView({ blogger }: { blogger: Blogger }) {
     <>
       <div className="container-x relative mt-6 space-y-10">
         <section data-aos="fade-up" className="rounded-3xl border border-line bg-surface p-4 sm:p-6 lg:p-8">
-          <div className="grid grid-cols-[7.5rem_1fr] gap-x-4 gap-y-5 sm:grid-cols-[13rem_1fr] sm:gap-x-8 lg:grid-cols-[13rem_1fr_17rem] lg:gap-x-10 lg:gap-y-0">
+          <div className="grid grid-cols-[7.5rem_1fr] gap-x-4 gap-y-5 sm:grid-cols-[13rem_1fr] sm:gap-x-8 sm:gap-y-0 lg:grid-cols-[16rem_1fr] lg:gap-x-12">
             <Portrait
               blogger={blogger}
               priority
-              sizes="(min-width: 640px) 208px, 120px"
+              sizes="(min-width: 1024px) 256px, (min-width: 640px) 208px, 120px"
               className="aspect-[4/5] self-start rounded-2xl sm:row-span-2"
             />
             <div className="min-w-0 self-center sm:self-end">
               <h1 className="text-xl font-bold leading-tight sm:text-3xl">{blogger.name}</h1>
               <p className="mt-1 text-muted">{blogger.handle}</p>
-              <p className="mt-3 text-sm font-semibold text-[var(--tone)]">{blogger.niche}</p>
-            </div>
-            <div className="col-span-2 sm:col-span-1 lg:self-start">
-              <p className="max-w-xl leading-relaxed sm:mt-5">{blogger.bio}</p>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {blogger.topics.map((t) => (
-                  <li
-                    key={t}
-                    className="rounded-full bg-[var(--tone-soft)] px-3 py-1 text-sm font-medium text-[var(--tone)]"
-                  >
-                    {t}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="col-span-2 flex flex-col justify-center sm:border-t sm:border-line sm:pt-5 lg:col-span-1 lg:col-start-3 lg:row-span-2 lg:row-start-1 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
-              <dl className="flex gap-8">
+              <dl className="mt-3 flex gap-6 sm:mt-5 sm:gap-10">
                 <div>
-                  <dd className="text-xl font-bold">{blogger.postsCount}</dd>
+                  <dd className="text-lg font-bold sm:text-xl">{blogger.postsCount}</dd>
                   <dt className="text-sm text-muted">публікацій</dt>
                 </div>
                 <div>
-                  <dd className="text-xl font-bold">{blogger.followers}</dd>
+                  <dd className="text-lg font-bold sm:text-xl">{blogger.followers}</dd>
                   <dt className="text-sm text-muted">підписників</dt>
                 </div>
               </dl>
-              <div className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-1">
+            </div>
+            <div className="col-span-2 sm:col-span-1 sm:pt-5">
+              <p className="text-sm font-semibold">{blogger.niche}</p>
+              <p className="mt-1 max-w-2xl leading-relaxed">{blogger.bio}</p>
+              <p className="mt-2 font-medium text-[var(--tone)]">{blogger.topics.join(" · ")}</p>
+              <div className="mt-5 grid max-w-lg grid-cols-1 gap-2 sm:grid-cols-2">
                 <TelegramButton />
                 <div className="grid">
                   <button type="button" onClick={openChat} className="btn btn-ghost">
