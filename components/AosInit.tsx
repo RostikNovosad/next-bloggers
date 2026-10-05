@@ -10,6 +10,8 @@ export default function AosInit() {
       document.querySelectorAll<HTMLElement>('[data-aos="fade-up"]').forEach((el, i) => {
         el.setAttribute("data-aos", i % 2 === 0 ? "fade-right" : "fade-left");
       });
+      // Commit the new start state before AOS adds its transitions, so blocks slide from the side only.
+      void document.body.offsetHeight;
     }
     AOS.init({
       duration: 700,
