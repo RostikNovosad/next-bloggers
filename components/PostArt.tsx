@@ -26,6 +26,7 @@ export default function PostArt({
         alt={post.title}
         fill
         sizes={sizes}
+        quality={90}
         priority={priority}
         className="object-cover"
         style={{ objectPosition: post.imagePosition }}

@@ -33,12 +33,13 @@ export default function Portrait({
             width={928}
             height={1152}
             priority={priority}
-            sizes={crop === "portrait" ? "(min-width: 640px) 928px, 100vw" : sizes}
+            sizes={crop === "portrait" ? `(min-width: 640px) 1200px, ${Math.round(Math.max(1, face!.zoom * 0.6) * 100)}vw` : sizes}
+            quality={90}
             className="absolute max-w-none"
             style={framing}
           />
         ) : (
-          <Image src={photo} alt={name} fill sizes={sizes} priority={priority} className="object-cover" />
+          <Image src={photo} alt={name} fill sizes={sizes} quality={90} priority={priority} className="object-cover" />
         )
       ) : (
         <svg viewBox="0 0 100 125" preserveAspectRatio="xMidYMax slice" className="absolute inset-0 size-full" aria-hidden>

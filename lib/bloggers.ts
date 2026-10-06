@@ -84,10 +84,10 @@ export const bloggers: Blogger[] = [
     avatar: "/images/maksym-avatar.jpeg",
     face: { x: 50, y: 35, zoom: 3.2 },
     posts: [
-      { id: "m1", title: "Стежка над хмарами", caption: "Сорок кілометрів, три перевали та світанок на висоті 2800 метрів.", likes: "18.9K", comments: 540, date: "вчора" },
-      { id: "m2", title: "Що в рюкзаку", caption: "Легкий набір на два дні в горах: вага та список.", likes: "11.3K", comments: 267, date: "4 дні тому" },
-      { id: "m3", title: "Ранкове тренування", caption: "Двадцять хвилин, які замінюють годину в залі.", likes: "8.6K", comments: 131, date: "тиждень тому" },
-      { id: "m4", title: "Тихі місця Європи", caption: "П'ять напрямків без натовпів туристів.", likes: "13.7K", comments: 389, date: "2 тижні тому" },
+      { id: "m1", title: "Стежка над хмарами", caption: "Сорок кілометрів, три перевали та світанок на висоті 2800 метрів.", likes: "18.9K", comments: 540, date: "вчора", image: "/content/maksym/1.jpeg" },
+      { id: "m2", title: "Що в рюкзаку", caption: "Легкий набір на два дні в горах: вага та список.", likes: "11.3K", comments: 267, date: "4 дні тому", image: "/content/maksym/2.jpeg" },
+      { id: "m3", title: "Ранкове тренування", caption: "Двадцять хвилин, які замінюють годину в залі.", likes: "8.6K", comments: 131, date: "тиждень тому", image: "/content/maksym/3.jpeg" },
+      { id: "m4", title: "Тихі місця Європи", caption: "П'ять напрямків без натовпів туристів.", likes: "13.7K", comments: 389, date: "2 тижні тому", image: "/content/maksym/4.jpeg" },
     ],
     dialog: {
       greeting: "Привіт! Я Максим. Можу підказати маршрут, підготовку до забігу чи список речей у поїздку.",
@@ -113,10 +113,10 @@ export const bloggers: Blogger[] = [
     avatar: "/images/alisa-avatar.jpeg",
     face: { x: 51, y: 27, zoom: 3.6 },
     posts: [
-      { id: "l1", title: "Осінній капсульний гардероб", caption: "Дванадцять речей, з яких збирається тридцять образів.", likes: "24.6K", comments: 712, date: "сьогодні" },
-      { id: "l2", title: "Базове пальто", caption: "Як вибрати модель, яка прослужить п'ять сезонів.", likes: "16.2K", comments: 358, date: "3 дні тому" },
-      { id: "l3", title: "Образ на вечір", caption: "Одна сукня і три способи її носити.", likes: "19.4K", comments: 431, date: "тиждень тому" },
-      { id: "l4", title: "Аксесуари", caption: "Дрібниці, що змінюють образ цілком.", likes: "10.8K", comments: 187, date: "2 тижні тому" },
+      { id: "l1", title: "Осінній капсульний гардероб", caption: "Дванадцять речей, з яких збирається тридцять образів.", likes: "24.6K", comments: 712, date: "сьогодні", image: "/content/alisa/1.jpeg" },
+      { id: "l2", title: "Базове пальто", caption: "Як вибрати модель, яка прослужить п'ять сезонів.", likes: "16.2K", comments: 358, date: "3 дні тому", image: "/content/alisa/2.jpeg" },
+      { id: "l3", title: "Образ на вечір", caption: "Одна сукня і три способи її носити.", likes: "19.4K", comments: 431, date: "тиждень тому", image: "/content/alisa/3.jpeg" },
+      { id: "l4", title: "Аксесуари", caption: "Дрібниці, що змінюють образ цілком.", likes: "10.8K", comments: 187, date: "2 тижні тому", image: "/content/alisa/4.jpeg" },
     ],
     dialog: {
       greeting: "Привіт! Я Аліса. Допоможу скласти образ або розібрати гардероб.",
@@ -142,10 +142,10 @@ export const bloggers: Blogger[] = [
     avatar: "/images/vira-avatar.jpeg",
     face: { x: 47, y: 31, zoom: 2.1 },
     posts: [
-      { id: "v1", title: "Ранок без поспіху", caption: "Мій розпорядок перших двох годин дня.", likes: "21.3K", comments: 603, date: "вчора" },
-      { id: "v2", title: "Домашній куточок", caption: "Як за вихідні зробити місце для відпочинку.", likes: "14.5K", comments: 289, date: "3 дні тому" },
-      { id: "v3", title: "Кав'ярні міста", caption: "Добірка місць, де добре працювати й думати.", likes: "12.1K", comments: 245, date: "тиждень тому" },
-      { id: "v4", title: "Вечірній ритуал", caption: "Прості кроки, після яких легко засинати.", likes: "17.8K", comments: 394, date: "2 тижні тому" },
+      { id: "v1", title: "Ранок без поспіху", caption: "Мій розпорядок перших двох годин дня.", likes: "21.3K", comments: 603, date: "вчора", image: "/content/vira/1.jpeg" },
+      { id: "v2", title: "Домашній куточок", caption: "Як за вихідні зробити місце для відпочинку.", likes: "14.5K", comments: 289, date: "3 дні тому", image: "/content/vira/2.jpeg" },
+      { id: "v3", title: "Кав'ярні міста", caption: "Добірка місць, де добре працювати й думати.", likes: "12.1K", comments: 245, date: "тиждень тому", image: "/content/vira/3.jpeg", imagePosition: "50% 45%" },
+      { id: "v4", title: "Вечірній ритуал", caption: "Прості кроки, після яких легко засинати.", likes: "17.8K", comments: 394, date: "2 тижні тому", image: "/content/vira/4.jpeg" },
     ],
     dialog: {
       greeting: "Привіт! Я Віра. Розповім про звички, затишок і спокійний ритм.",
