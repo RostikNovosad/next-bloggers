@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import type { Blogger } from "@/lib/bloggers";
 import { postBackground } from "./PostTile";
 import Avatar from "./Avatar";
+import PostArt from "./PostArt";
 import TelegramButton from "./TelegramButton";
 import { CloseIcon, CommentIcon, HeartFillIcon, ArrowIcon, BackIcon } from "./Icons";
 
@@ -44,8 +45,9 @@ export default function PostModal({
     <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-label={post.title}>
       <button type="button" aria-label="Закрити" onClick={onClose} className="absolute inset-0 bg-black/70" />
       <div className="msg-in relative flex max-h-[94dvh] w-full max-w-md flex-col overflow-hidden rounded-t-3xl bg-surface sm:rounded-2xl md:max-w-4xl md:flex-row">
-        <div className="flex aspect-[4/5] items-end p-6 md:aspect-auto md:min-h-[32rem] md:w-[55%]" style={{ background: postBackground(blogger.hue, index) }}>
-          <h3 className="text-3xl font-bold leading-tight">{post.title}</h3>
+        <div className="relative flex aspect-[4/5] shrink-0 items-end overflow-hidden p-6 md:aspect-auto md:min-h-[32rem] md:w-[55%]" style={{ background: postBackground(blogger.hue, index) }}>
+          <PostArt post={post} hue={blogger.hue} index={index} sizes="(min-width: 768px) 520px, 100vw" priority />
+          <h3 className={`relative text-3xl font-bold leading-tight ${post.image ? "text-white" : ""}`}>{post.title}</h3>
         </div>
 
         <div className="flex min-h-0 flex-1 flex-col">

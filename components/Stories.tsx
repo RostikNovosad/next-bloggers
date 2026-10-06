@@ -7,6 +7,7 @@ import type { Blogger } from "@/lib/bloggers";
 import Avatar from "./Avatar";
 import TelegramButton from "./TelegramButton";
 import { postBackground } from "./PostTile";
+import PostArt from "./PostArt";
 import { CloseIcon } from "./Icons";
 
 const SLIDE_MS = 4500;
@@ -99,6 +100,7 @@ export default function Stories({ bloggers }: { bloggers: Blogger[] }) {
             className="relative flex h-full w-full max-w-md flex-col overflow-hidden sm:h-[min(92dvh,52rem)] sm:rounded-3xl"
             style={{ background: postBackground(blogger.hue, open.s) }}
           >
+            <PostArt post={post} hue={blogger.hue} index={open.s} sizes="(min-width: 448px) 448px, 100vw" priority />
             <div className="absolute inset-x-0 top-0 z-10 bg-gradient-to-b from-black/25 to-transparent px-3 pb-8 pt-3">
               <div className="flex gap-1">
                 {blogger.posts.map((p, i) => (
@@ -129,7 +131,7 @@ export default function Stories({ bloggers }: { bloggers: Blogger[] }) {
               </div>
             </div>
 
-            <div className="flex flex-1 flex-col justify-end p-6 pb-4">
+            <div className={`relative flex flex-1 flex-col justify-end p-6 pb-4 ${post.image ? "text-white" : ""}`}>
               <h3 className="text-3xl font-bold leading-tight">{post.title}</h3>
               <p className="mt-3 text-lg leading-relaxed">{post.caption}</p>
             </div>

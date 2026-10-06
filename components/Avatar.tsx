@@ -13,7 +13,14 @@ export default function Avatar({
   ring?: boolean;
   seen?: boolean;
 }) {
-  const portrait = (
+  // A dedicated square avatar is used as is; otherwise the portrait is cropped around the face.
+  const portrait = blogger.avatar ? (
+    <Portrait
+      blogger={{ ...blogger, photo: blogger.avatar }}
+      sizes={`${size * 2}px`}
+      className="size-full rounded-full"
+    />
+  ) : (
     <Portrait
       blogger={blogger}
       sizes={`${Math.ceil(size * (blogger.face?.zoom ?? 1))}px`}

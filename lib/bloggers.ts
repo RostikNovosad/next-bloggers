@@ -5,6 +5,10 @@ export type Post = {
   likes: string;
   comments: number;
   date: string;
+  /** Photo in /public; a tinted placeholder is shown until it exists */
+  image?: string;
+  /** CSS object-position for non-4:5 photos, e.g. "38% 50%" */
+  imagePosition?: string;
 };
 
 export type Message = { from: "user" | "ai"; text: string };
@@ -25,6 +29,8 @@ export type Blogger = {
   /** Portrait path in /public; placeholder is rendered until the file exists */
   photo?: string;
   /** Face centre and zoom in the portrait, in % of the image; used to crop round avatars. */
+  /** Square avatar in /public; falls back to a crop of the portrait */
+  avatar?: string;
   face?: { x: number; y: number; zoom: number };
   posts: Post[];
   dialog: { greeting: string; quick: { q: string; a: string }[] };
@@ -46,12 +52,13 @@ export const bloggers: Blogger[] = [
     topics: ["AI-інструменти", "Стартапи", "Продуктивність"],
     hue: 215,
     photo: "/images/artem.jpeg",
+    avatar: "/images/artem-avatar.jpeg",
     face: { x: 48, y: 31, zoom: 1.9 },
     posts: [
-      { id: "a1", title: "Мій стек на 2026", caption: "Сім інструментів, якими я користуюся щодня, і два, від яких відмовився.", likes: "12.4K", comments: 318, date: "2 дні тому" },
-      { id: "a2", title: "Як запустити MVP за тиждень", caption: "Покроковий план без зайвих дзвінків і презентацій.", likes: "9.8K", comments: 204, date: "5 днів тому" },
-      { id: "a3", title: "AI-агенти в робочих процесах", caption: "Де агенти вже приносять гроші, а де залишаються іграшкою.", likes: "15.1K", comments: 422, date: "тиждень тому" },
-      { id: "a4", title: "Робоче місце", caption: "Мінімалізм, один монітор і жодних сповіщень.", likes: "7.2K", comments: 96, date: "2 тижні тому" },
+      { id: "a1", title: "Мій стек на 2026", caption: "Сім інструментів, якими я користуюся щодня, і два, від яких відмовився.", likes: "12.4K", comments: 318, date: "2 дні тому", image: "/content/artem/1.jpeg" },
+      { id: "a2", title: "Як запустити MVP за тиждень", caption: "Покроковий план без зайвих дзвінків і презентацій.", likes: "9.8K", comments: 204, date: "5 днів тому", image: "/content/artem/2.jpeg" },
+      { id: "a3", title: "AI-агенти в робочих процесах", caption: "Де агенти вже приносять гроші, а де залишаються іграшкою.", likes: "15.1K", comments: 422, date: "тиждень тому", image: "/content/artem/3.jpeg", imagePosition: "38% 50%" },
+      { id: "a4", title: "Робоче місце", caption: "Мінімалізм, один монітор і жодних сповіщень.", likes: "7.2K", comments: 96, date: "2 тижні тому", image: "/content/artem/4.jpeg" },
     ],
     dialog: {
       greeting: "Привіт! Я Артем. Питай про AI-інструменти, стартапи чи продуктивність.",
@@ -74,6 +81,7 @@ export const bloggers: Blogger[] = [
     topics: ["Трейлраннінг", "Подорожі", "Спорядження"],
     hue: 28,
     photo: "/images/maksym.jpeg",
+    avatar: "/images/maksym-avatar.jpeg",
     face: { x: 50, y: 35, zoom: 3.2 },
     posts: [
       { id: "m1", title: "Стежка над хмарами", caption: "Сорок кілометрів, три перевали та світанок на висоті 2800 метрів.", likes: "18.9K", comments: 540, date: "вчора" },
@@ -102,6 +110,7 @@ export const bloggers: Blogger[] = [
     topics: ["Капсульний гардероб", "Образи", "Б'юті"],
     hue: 335,
     photo: "/images/alisa.jpeg",
+    avatar: "/images/alisa-avatar.jpeg",
     face: { x: 51, y: 27, zoom: 3.6 },
     posts: [
       { id: "l1", title: "Осінній капсульний гардероб", caption: "Дванадцять речей, з яких збирається тридцять образів.", likes: "24.6K", comments: 712, date: "сьогодні" },
@@ -130,6 +139,7 @@ export const bloggers: Blogger[] = [
     topics: ["Звички", "Дім і затишок", "Подорожі"],
     hue: 160,
     photo: "/images/vira.jpeg",
+    avatar: "/images/vira-avatar.jpeg",
     face: { x: 47, y: 31, zoom: 2.1 },
     posts: [
       { id: "v1", title: "Ранок без поспіху", caption: "Мій розпорядок перших двох годин дня.", likes: "21.3K", comments: 603, date: "вчора" },
